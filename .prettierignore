@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+pnpm-lock.yaml
+docs/requirements/TECHNICAL_SPEC_v1.0.md
+docs/tasks/001-bootstrap.md
+docs/practice/*/evidence/*.txt

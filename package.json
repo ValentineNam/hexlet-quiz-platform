@@ -1,0 +1,27 @@
+{
+  "name": "hexlet-quiz-platform",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.34.9",
+  "engines": {
+    "node": "24.22.2",
+    "pnpm": "10.34.9"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @quiz/web --filter @quiz/api dev",
+    "build": "pnpm -r build",
+    "lint": "eslint .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r --if-present test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.1",
+    "eslint": "9.39.1",
+    "typescript-eslint": "8.46.4",
+    "globals": "16.5.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  }
+}

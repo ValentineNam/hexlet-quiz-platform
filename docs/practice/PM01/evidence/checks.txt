@@ -1,0 +1,109 @@
+Фактическая дата: 04.11.2026, Europe/Moscow
+
+$ node --version
+v24.22.2
+
+exit=0
+
+$ pnpm --version
+10.34.9
+
+exit=0
+
+$ pnpm install --frozen-lockfile --store-dir /private/tmp/quiz-pnpm-store
+Scope: all 4 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @nestjs/core@11.1.8.                                │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 452ms using pnpm v10.34.9
+
+exit=0
+
+$ pnpm lint
+
+> hexlet-quiz-platform@0.0.0 lint /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> eslint .
+
+
+exit=0
+
+$ pnpm typecheck
+
+> hexlet-quiz-platform@0.0.0 typecheck /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r typecheck
+
+Scope: 3 of 4 workspace projects
+apps/api typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+packages/shared typecheck$ tsc --noEmit
+packages/shared typecheck: Done
+apps/api typecheck: Done
+apps/web typecheck: Done
+
+exit=0
+
+$ pnpm test
+
+> hexlet-quiz-platform@0.0.0 test /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r --if-present test
+
+Scope: 3 of 4 workspace projects
+apps/api test$ vitest run
+apps/web test$ vitest run
+apps/api test:  RUN  v3.2.4 /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/web test:  RUN  v3.2.4 /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/web
+apps/api test:  ✓ test/health.test.ts (1 test) 83ms
+apps/api test:  Test Files  1 passed (1)
+apps/api test:       Tests  1 passed (1)
+apps/api test:    Start at  14:16:20
+apps/api test:    Duration  647ms (transform 31ms, setup 0ms, collect 349ms, tests 83ms, environment 0ms, prepare 48ms)
+apps/api test: Done
+apps/web test:  ✓ src/App.test.tsx (1 test) 40ms
+apps/web test:  Test Files  1 passed (1)
+apps/web test:       Tests  1 passed (1)
+apps/web test:    Start at  14:16:21
+apps/web test:    Duration  653ms (transform 26ms, setup 41ms, collect 68ms, tests 40ms, environment 258ms, prepare 42ms)
+apps/web test: Done
+
+exit=0
+
+$ pnpm build
+
+> hexlet-quiz-platform@0.0.0 build /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r build
+
+Scope: 3 of 4 workspace projects
+apps/web build$ tsc --noEmit && vite build
+apps/api build$ tsc -p tsconfig.build.json
+packages/shared build$ tsc
+packages/shared build: Done
+apps/api build: Done
+apps/web build: vite v7.2.2 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 29 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.40 kB │ gzip:  0.27 kB
+apps/web build: dist/assets/index-D2uzuDwA.css    8.38 kB │ gzip:  2.40 kB
+apps/web build: dist/assets/index-DcPfKNP9.js   194.12 kB │ gzip: 61.24 kB
+apps/web build: ✓ built in 484ms
+apps/web build: Done
+
+exit=0
+
+$ pnpm format:check
+
+> hexlet-quiz-platform@0.0.0 format:check /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+exit=0

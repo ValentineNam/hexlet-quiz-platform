@@ -1,0 +1,172 @@
+Завершающий прогон Codex: 04.11.2026 (Europe/Moscow).
+Node из ~/.nvm/versions/node/v24.22.2/bin добавлен в PATH текущего процесса.
+
+$ node --version
+v24.22.2
+
+exit=0
+
+$ pnpm --version
+10.34.9
+
+exit=0
+
+$ pnpm lint
+
+> hexlet-quiz-platform@0.0.0 lint /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> eslint .
+
+
+exit=0
+
+$ pnpm typecheck
+
+> hexlet-quiz-platform@0.0.0 typecheck /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r typecheck
+
+Scope: 3 of 4 workspace projects
+apps/api typecheck$ tsc --noEmit
+packages/shared typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+packages/shared typecheck: Done
+apps/api typecheck: Done
+apps/web typecheck: Done
+
+exit=0
+
+$ pnpm test
+
+> hexlet-quiz-platform@0.0.0 test /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r --if-present test
+
+Scope: 3 of 4 workspace projects
+apps/api test$ vitest run
+apps/web test$ vitest run
+apps/web test:  RUN  v3.2.4 /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/web
+apps/api test:  RUN  v3.2.4 /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api test: [Nest] 34539  - 11/04/2026, 6:18:32 PM   ERROR [NestApplication] Error: listen EPERM: operation not permitted 127.0.0.1
+apps/api test:  ❯ test/health.test.ts (1 test | 1 failed) 75ms
+apps/api test:    × GET /health returns HTTP 200 and the expected JSON without a database 74ms
+apps/api test:      → listen EPERM: operation not permitted 127.0.0.1
+apps/api test: ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+apps/api test:  FAIL  test/health.test.ts > GET /health returns HTTP 200 and the expected JSON without a database
+apps/api test: Error: listen EPERM: operation not permitted 127.0.0.1
+apps/api test: ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+apps/api test:  Test Files  1 failed (1)
+apps/api test:       Tests  1 failed (1)
+apps/api test:    Start at  18:18:31
+apps/api test:    Duration  647ms (transform 34ms, setup 0ms, collect 279ms, tests 75ms, environment 0ms, prepare 40ms)
+apps/api test: Failed
+/Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @quiz/api@0.0.0 test: `vitest run`
+Exit status 1
+ ELIFECYCLE  Test failed. See above for more details.
+
+exit=1
+
+$ pnpm build
+
+> hexlet-quiz-platform@0.0.0 build /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r build
+
+Scope: 3 of 4 workspace projects
+apps/api build$ tsc -p tsconfig.build.json
+packages/shared build$ tsc
+apps/web build$ tsc --noEmit && vite build
+packages/shared build: Done
+apps/api build: Done
+apps/web build: vite v7.2.2 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 29 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.40 kB │ gzip:  0.27 kB
+apps/web build: dist/assets/index-D2uzuDwA.css    8.38 kB │ gzip:  2.40 kB
+apps/web build: dist/assets/index-DcPfKNP9.js   194.12 kB │ gzip: 61.24 kB
+apps/web build: ✓ built in 505ms
+apps/web build: Done
+
+exit=0
+
+$ pnpm format
+
+> hexlet-quiz-platform@0.0.0 format /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --write .
+
+.github/workflows/ci.yml 13ms (unchanged)
+.prettierrc.json 14ms (unchanged)
+apps/api/package.json 1ms (unchanged)
+apps/api/src/app.controller.ts 18ms (unchanged)
+apps/api/src/app.module.ts 2ms (unchanged)
+apps/api/src/main.ts 3ms (unchanged)
+apps/api/test/health.test.ts 4ms (unchanged)
+apps/api/tsconfig.build.json 1ms (unchanged)
+apps/api/tsconfig.json 1ms (unchanged)
+apps/web/index.html 13ms (unchanged)
+apps/web/package.json 1ms (unchanged)
+apps/web/src/App.test.tsx 4ms (unchanged)
+apps/web/src/App.tsx 6ms (unchanged)
+apps/web/src/main.tsx 2ms (unchanged)
+apps/web/src/styles.css 10ms (unchanged)
+apps/web/src/test-setup.ts 1ms (unchanged)
+apps/web/tsconfig.json 1ms (unchanged)
+apps/web/vite.config.ts 2ms (unchanged)
+docker-compose.yml 2ms (unchanged)
+docs/architecture/README.md 11ms (unchanged)
+docs/design/README.md 1ms (unchanged)
+docs/practice/PM01/evidence/bootstrap-report.md 11ms (unchanged)
+docs/practice/PM01/evidence/final-verification-2026-11-04.md 3ms (unchanged)
+docs/practice/PM01/evidence/postgresql-verification.md 4ms (unchanged)
+docs/practice/PM01/evidence/README.md 1ms (unchanged)
+docs/practice/PM01/progress.md 8ms
+docs/practice/PM02/evidence/README.md 1ms (unchanged)
+docs/practice/PM04/evidence/README.md 1ms (unchanged)
+docs/progress/README.md 1ms (unchanged)
+docs/testing/frontend-manual-2026-11-04.md 3ms (unchanged)
+docs/testing/README.md 1ms (unchanged)
+eslint.config.mjs 4ms (unchanged)
+package.json 1ms (unchanged)
+packages/shared/package.json 1ms (unchanged)
+packages/shared/src/index.ts 2ms (unchanged)
+packages/shared/tsconfig.json 1ms (unchanged)
+pnpm-workspace.yaml 1ms (unchanged)
+README.md 5ms (unchanged)
+tsconfig.base.json 1ms (unchanged)
+
+exit=0
+
+$ pnpm format:check
+
+> hexlet-quiz-platform@0.0.0 format:check /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+exit=0
+
+Повтор HTTP-теста с разрешением на локальный порт после EPERM в песочнице.
+$ pnpm test
+
+> hexlet-quiz-platform@0.0.0 test /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r --if-present test
+
+Scope: 3 of 4 workspace projects
+apps/api test$ vitest run
+apps/web test$ vitest run
+apps/api test:  RUN  v3.2.4 /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/web test:  RUN  v3.2.4 /Users/v.nam/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/web
+apps/api test:  ✓ test/health.test.ts (1 test) 79ms
+apps/api test:  Test Files  1 passed (1)
+apps/api test:       Tests  1 passed (1)
+apps/api test:    Start at  18:18:48
+apps/api test:    Duration  757ms (transform 71ms, setup 0ms, collect 339ms, tests 79ms, environment 0ms, prepare 116ms)
+apps/api test: Done
+apps/web test:  ✓ src/App.test.tsx (1 test) 44ms
+apps/web test:  Test Files  1 passed (1)
+apps/web test:       Tests  1 passed (1)
+apps/web test:    Start at  18:18:49
+apps/web test:    Duration  769ms (transform 25ms, setup 52ms, collect 79ms, tests 44ms, environment 300ms, prepare 68ms)
+apps/web test: Done
+
+exit=0

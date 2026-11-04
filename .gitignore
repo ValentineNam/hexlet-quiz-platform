@@ -147,3 +147,12 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Local editor, secrets and temporary files
+.DS_Store
+*.local
+*.pem
+*.key
+*.tmp
+*.swp
+.idea/

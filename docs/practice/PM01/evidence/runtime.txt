@@ -1,0 +1,68 @@
+Первоначальная проверка Codex. Ниже сохранён исходный вывод; он не описывает последующее состояние Docker.
+Позднее 04.11.2026 пользователь подтвердил успешный запуск PostgreSQL; см. postgresql-verification.md.
+Подключение backend к БД пока не проверялось.
+
+Фактическая дата: 04.11.2026, Europe/Moscow
+Серверы запущены командой pnpm dev на Node 24.22.2 / pnpm 10.34.9.
+Compose проверяется с POSTGRES_PASSWORD=validation-placeholder (не секрет).
+
+$ curl --silent --show-error --fail-with-body -i http://127.0.0.1:3000/health
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 15
+ETag: W/"f-VaSQ4oDUiZblZNAEkkN+sX+q3Sg"
+Date: Wed, 04 Nov 2026 11:16:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"status":"ok"}
+exit=0
+
+$ curl --silent --show-error --fail-with-body -i http://127.0.0.1:5173/
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"22b-PoMnhWO+wAbKjUaotvjkEjJP6WY"
+Date: Wed, 04 Nov 2026 11:16:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 555
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Platform</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+exit=0
+
+$ POSTGRES_PASSWORD=validation-placeholder docker-compose config --quiet
+
+exit=0
+
+$ docker info
+Client: Docker Engine - Community
+ Version:    29.5.2
+ Context:    colima
+ Debug Mode: true
+
+Server:
+Cannot connect to the Docker daemon at unix:///Users/v.nam/.colima/default/docker.sock. Is the docker daemon running?
+
+exit=1
