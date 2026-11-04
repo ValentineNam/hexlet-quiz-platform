@@ -57,7 +57,7 @@ docker compose down
 
 - `apps/web` — React, Vite, Tailwind, TypeScript; тест стартовой страницы.
 - `apps/api` — NestJS; HTTP-тест `/health` через Supertest.
-- `packages/shared` — типизированная валидация вопросов без фреймворков; [контракт и алгоритм](docs/tasks/002-question-validation.md).
+- `packages/shared` — независимые модули [валидации вопросов](docs/tasks/002-question-validation.md) и [проверки ответов / начисления баллов](docs/tasks/003-answer-scoring.md).
 - `docs/architecture`, `docs/design`, `docs/testing` — материалы соответствующих этапов.
 - `docs/practice/PM01/progress.md` — фактический журнал; свидетельства в `evidence`.
 - `docs/practice/PM02/evidence`, `docs/practice/PM04/evidence` — места для будущих фактических свидетельств.

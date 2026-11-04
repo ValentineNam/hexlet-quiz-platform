@@ -1,3 +1,5 @@
+export const MAX_OPTION_ID_LENGTH = 256;
+
 /** Input for authoring/validation, not a participant-facing payload: includes correct answers. */
 export type QuestionType = 'single' | 'multiple';
 
@@ -159,9 +161,21 @@ export function validateQuestion(input: unknown): ValidationResult {
         canCountCorrect = false;
         continue;
       }
-      function requiredText(value: unknown, field: ValidationField): string {
+      function requiredText(
+        value: unknown,
+        field: ValidationField,
+        maxLength?: number,
+      ): string {
         if (typeof value !== 'string') {
           addError('INVALID_TYPE', field, 'Ожидается строка.');
+          return '';
+        }
+        if (maxLength !== undefined && value.length > maxLength) {
+          addError(
+            'OUT_OF_RANGE',
+            field,
+            `Идентификатор должен содержать не более ${maxLength} кодовых единиц UTF-16.`,
+          );
           return '';
         }
         const normalized = value.trim();
@@ -169,7 +183,11 @@ export function validateQuestion(input: unknown): ValidationResult {
           addError('REQUIRED', field, 'Строка не должна быть пустой.');
         return normalized;
       }
-      const id = requiredText(option.id, `options[${index}].id`);
+      const id = requiredText(
+        option.id,
+        `options[${index}].id`,
+        MAX_OPTION_ID_LENGTH,
+      );
       const optionText = requiredText(option.text, `options[${index}].text`);
       if (id) {
         if (ids.has(id))

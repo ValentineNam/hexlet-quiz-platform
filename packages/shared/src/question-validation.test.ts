@@ -428,3 +428,33 @@ describe('validateQuestion', () => {
     expect(input).toEqual(before);
   });
 });
+
+describe('option ID length limit agreed after scoring audit', () => {
+  it.each(['a'.repeat(256), '😀'.repeat(128)])(
+    'accepts 256 UTF-16 units',
+    (id) => {
+      const input = question();
+      input.options[0].id = id;
+      expect(validateQuestion(input)).toEqual({ success: true, data: input });
+    },
+  );
+  it.each(['a'.repeat(257), '😀'.repeat(129), ' ' + 'a'.repeat(255) + ' '])(
+    'rejects raw ID length over 256 before trim',
+    (id) => {
+      const input = question();
+      input.options[0].id = id;
+      expect(validateQuestion(input)).toEqual({
+        success: false,
+        errors: [
+          {
+            code: 'OUT_OF_RANGE',
+            field: 'options[0].id',
+            message:
+              'Идентификатор должен содержать не более 256 кодовых единиц UTF-16.',
+          },
+        ],
+      });
+      expect(input.options[0].id).toBe(id);
+    },
+  );
+});

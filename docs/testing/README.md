@@ -2,6 +2,10 @@
 
 [Ручная проверка интерфейса 04.11.2026](frontend-manual-2026-11-04.md): Chrome DevTools, iPhone SE, 375 × 667 px; также зафиксирована открытая проблема запуска `corepack pnpm dev`.
 
-Валидация вопросов: 93 unit-теста в `packages/shared/src/question-validation.test.ts`, запуск `pnpm --filter @quiz/shared test` или общим `pnpm test`. [Алгоритм и таблица данных](../tasks/002-question-validation.md), [фактические результаты](../practice/PM01/evidence/002-question-validation.md).
+Валидация вопросов: 98 unit-тестов в `packages/shared/src/question-validation.test.ts`, запуск `pnpm --filter @quiz/shared test` или общим `pnpm test`. [Алгоритм и таблица данных](../tasks/002-question-validation.md), [фактические результаты](../practice/PM01/evidence/002-question-validation.md).
 
 После завершающего рефакторинга: [сценарии недопустимой длины массива и результаты до/после](../practice/PM01/evidence/002-refactor.md).
+
+Проверка ответов и начисление баллов: 179 unit-тестов в `packages/shared/src/answer-scoring.test.ts`. Проверены точные баллы для 5/30/120 секунд, границы 20% и дедлайна, округление, монотонность, ошибки аргументов и отсутствие мутаций. [Задача № 003](../tasks/003-answer-scoring.md), [свидетельство](../practice/PM01/evidence/003-answer-scoring.md).
+
+[Рефакторинг 003](../practice/PM01/evidence/003-refactor.md): математически точное округление, границы ресурсов 100/6/256, регрессии полуцелых значений и порядок ошибок.
