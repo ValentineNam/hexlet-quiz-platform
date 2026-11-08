@@ -1,0 +1,18 @@
+{
+  "checked_on": "2026-11-08",
+  "source": "Public GitHub REST API, no authentication",
+  "endpoint": "https://api.github.com/repos/ValentineNam/hexlet-quiz-platform/actions/runs?head_sha=4ad431b14396d73e805c8414eea8f50367ac81b0",
+  "runs": [
+    {
+      "id": 42464080786,
+      "name": "CI",
+      "run_number": 5,
+      "head_sha": "4ad431b14396d73e805c8414eea8f50367ac81b0",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/ValentineNam/hexlet-quiz-platform/actions/runs/42464080786",
+      "created_at": "2026-11-08T08:42:43Z",
+      "updated_at": "2026-11-08T08:43:07Z"
+    }
+  ]
+}
