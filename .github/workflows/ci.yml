@@ -5,6 +5,22 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17.6-alpine
+        env:
+          POSTGRES_DB: quiz_ci_test
+          POSTGRES_USER: quiz_ci
+          # Disposable CI database credentials only, never production secrets.
+          POSTGRES_PASSWORD: ci-local-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U quiz_ci -d quiz_ci_test"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://quiz_ci:ci-local-only@127.0.0.1:5432/quiz_ci_test?schema=public
+      TEST_DATABASE_URL: postgresql://quiz_ci:ci-local-only@127.0.0.1:5432/quiz_ci_test?schema=public
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -15,6 +31,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
+      - run: pnpm --filter @quiz/api db:validate
+      - run: pnpm --filter @quiz/api db:migrate
+      - run: pnpm --filter @quiz/api test:integration
       - run: pnpm test
       - run: pnpm build
       - run: pnpm format:check

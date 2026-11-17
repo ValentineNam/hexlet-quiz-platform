@@ -23,3 +23,11 @@ export type {
   ScoreResult,
   AnswerEvaluation,
 } from './answer-scoring';
+
+export type {
+  CreateQuizRequest,
+  PublicQuestion,
+  PublicQuizResponse,
+  QuizInputError,
+  QuizValidationErrorResponse,
+} from './quiz-contracts';

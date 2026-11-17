@@ -3,17 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "tsc -p tsconfig.build.json && concurrently --kill-others \"tsc -p tsconfig.build.json --watch --preserveWatchOutput\" \"node --watch dist/main.js\"",
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "dev": "pnpm prepare:api && tsc -p tsconfig.build.json && concurrently --kill-others \"tsc -p tsconfig.build.json --watch --preserveWatchOutput\" \"node --env-file-if-exists=../../.env --watch dist/main.js\"",
+    "build": "pnpm prepare:api && tsc -p tsconfig.build.json",
+    "typecheck": "pnpm prepare:api && tsc --noEmit",
+    "test": "pnpm prepare:api && vitest run --exclude 'test/database.integration.test.ts'",
+    "db:generate": "prisma generate",
+    "db:validate": "node --env-file-if-exists=../../.env node_modules/prisma/build/index.js validate",
+    "db:migrate": "node --env-file-if-exists=../../.env node_modules/prisma/build/index.js migrate deploy",
+    "test:integration": "pnpm prepare:api && vitest run test/database.integration.test.ts",
+    "prepare:api": "pnpm --filter @quiz/shared build && prisma generate"
   },
   "dependencies": {
     "@nestjs/common": "11.1.8",
     "@nestjs/core": "11.1.8",
     "@nestjs/platform-express": "11.1.8",
     "reflect-metadata": "0.2.2",
-    "rxjs": "7.8.2"
+    "rxjs": "7.8.2",
+    "@quiz/shared": "workspace:*",
+    "@prisma/client": "6.19.0"
   },
   "devDependencies": {
     "@nestjs/testing": "11.1.8",
@@ -21,6 +28,7 @@
     "@types/supertest": "6.0.3",
     "supertest": "7.1.4",
     "vitest": "3.2.4",
-    "concurrently": "9.2.1"
+    "concurrently": "9.2.1",
+    "prisma": "6.19.0"
   }
 }

@@ -21,7 +21,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Frontend: http://127.0.0.1:5173. API: http://127.0.0.1:3000/health — HTTP 200, `{"status":"ok"}`. Остановка обоих процессов — Ctrl+C. Порты должны быть свободны. API не требует БД или `.env`.
+Frontend: http://127.0.0.1:5173. API: http://127.0.0.1:3000/health — HTTP 200, `{"status":"ok"}`. Остановка обоих процессов — Ctrl+C. Порты должны быть свободны. По умолчанию API работает без БД: маршруты квизов выключены (`ENABLE_QUIZ_API=false`), `/health` проверяет только liveness.
 
 ## Демонстрационное прохождение квиза (задача № 004)
 
@@ -65,15 +65,39 @@ docker compose down
 
 Если Docker CLI не обнаруживает плагин `compose`, используйте установленную отдельную команду `docker-compose` вместо `docker compose`. В проверенной среде доступна именно она.
 
-БД `quiz_local`, пользователь `quiz_local`, порт `127.0.0.1:5432`. Данные сохраняются в volume `postgres_data`; `down` их не удаляет. Пример пароля не является действующим секретом. Не публикуйте `.env`. API пока не подключается к PostgreSQL.
+БД `quiz_local`, пользователь `quiz_local`, порт `127.0.0.1:5432`. Данные сохраняются в volume `postgres_data`; `down` их не удаляет. Пример пароля не является действующим секретом. Не публикуйте `.env`. Для подключения API используйте отдельную инструкцию ПМ02 ниже; локальный демоплеер по-прежнему не использует БД.
+
+## ПМ02: локальная интеграция API и PostgreSQL (задача № 005)
+
+Если `.env` уже существует, не перезаписывайте его. Добавьте параметры из `.env.example`: `DATABASE_URL` с пользователем `quiz_local`, вашей локальной БД и паролем, совпадающим с `POSTGRES_PASSWORD`. Специальные символы пароля в URL нужно percent-encode. Реальные значения не коммитить.
+
+```sh
+# После настройки .env; Docker Engine должен быть запущен:
+docker-compose up -d postgres
+pnpm --filter @quiz/api db:validate
+pnpm --filter @quiz/api db:migrate
+ENABLE_QUIZ_API=true pnpm --filter @quiz/api dev
+```
+
+Prisma CLI validate/migrate и процесс API загружают корневой `.env`; значения уже заданного окружения имеют приоритет. Генерация Prisma и сборка shared входят в команды API автоматически. После изменения кода shared пересоберите shared или перезапустите API-dev. Миграции при старте API не запускаются и данные не сбрасывают. PORT по умолчанию 3000, bind только 127.0.0.1.
+
+Включаются `POST /quizzes` и `GET /quizzes/:id`. Авторский вход содержит правильные ответы; оба ответа API содержат только PublicQuizResponse без `isCorrect`. Пока авторизации нет, включайте эти маршруты только для локальных проверок. Демонстрационный frontend не отправляет запросов в API, редактор не добавлен. Без флага маршруты возвращают 404 и подключение БД не создаётся. При включённом флаге отсутствие URL/БД останавливает запуск. `/health` не является проверкой текущей доступности БД.
+
+```sh
+# Нужна отдельная БД с суффиксом _test и применённой миграцией.
+# Задайте TEST_DATABASE_URL через окружение, не выводя credentials в общий лог.
+pnpm --filter @quiz/api test:integration
+```
+
+Тесты делают записи: используйте выделенную тестовую БД. Они не вызывают reset/truncate и удаляют только собственные созданные записи. Обычный `pnpm test` использует mock HTTP-тесты и не требует PostgreSQL. CI дополнен отдельным PostgreSQL service для DB-набора. [Контракты, схема и ограничения](docs/tasks/005-api-database-integration.md), [журнал ПМ02](docs/practice/PM02/progress.md), [фактическая проверка PostgreSQL](docs/practice/PM02/evidence/005-integration.md).
 
 ## Структура и практика
 
 - `apps/web` — React, Vite, Tailwind, TypeScript; демонстрационный плеер квиза и тесты взаимодействия.
-- `apps/api` — NestJS; HTTP-тест `/health` через Supertest.
+- `apps/api` — NestJS, opt-in API квизов, Prisma и миграция PostgreSQL; unit/HTTP и отдельные DB-тесты.
 - `packages/shared` — независимые модули [валидации вопросов](docs/tasks/002-question-validation.md) и [проверки ответов / начисления баллов](docs/tasks/003-answer-scoring.md).
 - `docs/architecture`, `docs/design`, `docs/testing` — материалы соответствующих этапов.
 - `docs/practice/PM01/progress.md` — фактический журнал; свидетельства в `evidence`.
-- `docs/practice/PM02/evidence`, `docs/practice/PM04/evidence` — места для будущих фактических свидетельств.
+- `docs/practice/PM02` — журнал и свидетельства интеграции; `docs/practice/PM04/evidence` — место для будущих фактических свидетельств.
 
 Первый этап ПМ01 заканчивается 08.11.2026. Bootstrap не означает готовность всего ПМ01 или MVP. Авторизация, квизы, игровые алгоритмы, Prisma и деплой в задачу 001 не входят.

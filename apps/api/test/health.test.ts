@@ -5,7 +5,7 @@ import { expect, it } from 'vitest';
 import { AppModule } from '../src/app.module';
 it('GET /health returns HTTP 200 and the expected JSON without a database', async () => {
   const module = await Test.createTestingModule({
-    imports: [AppModule],
+    imports: [AppModule.configure(false)],
   }).compile();
   const app = module.createNestApplication();
   try {
@@ -14,6 +14,7 @@ it('GET /health returns HTTP 200 and the expected JSON without a database', asyn
       .get('/health')
       .expect(200);
     expect(response.body).toEqual({ status: 'ok' });
+    await request(app.getHttpServer()).post('/quizzes').send({}).expect(404);
   } finally {
     await app.close();
   }
