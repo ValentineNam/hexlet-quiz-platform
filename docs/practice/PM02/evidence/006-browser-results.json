@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-17",
+  "browser": "Chrome/157.0.8103.79",
+  "head": "19833ed + uncommitted task006 changes",
+  "quizId": "b99ad429-755f-4ece-8903-7ccdcdd4e7d7",
+  "layout": [
+    {
+      "mode": "editor",
+      "width": 320,
+      "scroll": 320,
+      "touchMin": 46
+    },
+    {
+      "mode": "editor",
+      "width": 375,
+      "scroll": 375,
+      "touchMin": 46
+    },
+    {
+      "mode": "editor",
+      "width": 430,
+      "scroll": 430,
+      "touchMin": 46
+    },
+    {
+      "mode": "editor",
+      "width": 768,
+      "scroll": 768,
+      "touchMin": 46
+    },
+    {
+      "mode": "editor",
+      "width": 1280,
+      "scroll": 1280,
+      "touchMin": 46
+    },
+    {
+      "mode": "saved-and-public",
+      "width": 320,
+      "scroll": 320
+    },
+    {
+      "mode": "saved-and-public",
+      "width": 375,
+      "scroll": 375
+    },
+    {
+      "mode": "saved-and-public",
+      "width": 430,
+      "scroll": 430
+    },
+    {
+      "mode": "saved-and-public",
+      "width": 768,
+      "scroll": 768
+    },
+    {
+      "mode": "saved-and-public",
+      "width": 1280,
+      "scroll": 1280
+    }
+  ],
+  "keyboard": {
+    "tag": "INPUT",
+    "outline": "solid",
+    "width": "3px"
+  },
+  "postRequests": 1,
+  "databaseRows": {
+    "quizzes": 1,
+    "questions": 2,
+    "options": 8,
+    "correctOptions": 3
+  },
+  "getHasCorrectness": false
+}
