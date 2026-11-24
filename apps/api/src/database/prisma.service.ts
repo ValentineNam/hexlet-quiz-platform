@@ -36,6 +36,11 @@ export class PrismaService
     }
   }
   async onModuleDestroy() {
-    await this.$disconnect();
+    try {
+      await this.$disconnect();
+    } catch {
+      // Nest logs lifecycle errors: never propagate driver/connection details.
+      throw new Error('Не удалось корректно отключиться от БД.');
+    }
   }
 }

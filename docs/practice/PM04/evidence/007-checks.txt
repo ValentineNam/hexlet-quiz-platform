@@ -1,0 +1,520 @@
+23.11.2026 Europe/Moscow. ПМ04 №007. Начальное дерево чистое; результаты новых запусков, не перенос результатов ПМ02. Дата из клиентского контекста.
+CI query failed: HTTP Error 403: rate limit exceeded
+$ git branch --show-current
+main
+exit=0
+$ git rev-parse HEAD
+aaaa6352e095a31c8951808196303ef976c9580f
+exit=0
+$ node --version
+v24.22.2
+exit=0
+$ pnpm --version
+10.34.9
+exit=0
+$ python3 --version
+Python 3.13.0
+exit=0
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		15.7.1
+BuildVersion:		24G231
+exit=0
+$ uname -m
+arm64
+exit=0
+$ sysctl -n machdep.cpu.brand_string hw.logicalcpu hw.memsize
+Apple M1 Pro
+10
+17179869184
+exit=0
+$ docker --version
+Docker version 29.5.2, build 79eb04c7d8
+exit=0
+$ docker version --format '{{.Server.Version}}'
+29.2.1
+exit=0
+$ docker info --format 'CPUs={{.NCPU}} MemoryBytes={{.MemTotal}}'
+CPUs=2 MemoryBytes=2054303744
+exit=0
+$ docker-compose --version
+Docker Compose version 5.1.4
+exit=0
+$ pnpm install --frozen-lockfile
+Scope: all 4 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 622ms using pnpm v10.34.9
+exit=0
+$ pnpm lint
+
+> hexlet-quiz-platform@0.0.0 lint <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> eslint .
+
+exit=0
+$ pnpm typecheck
+
+> hexlet-quiz-platform@0.0.0 typecheck <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r typecheck
+
+Scope: 3 of 4 workspace projects
+packages/shared typecheck$ tsc --noEmit -p tsconfig.test.json
+packages/shared typecheck: Done
+apps/api typecheck$ pnpm prepare:api && tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+apps/api typecheck: > @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api typecheck: > pnpm --filter @quiz/shared build && prisma generate
+apps/api typecheck: > @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+apps/api typecheck: > tsc
+apps/web typecheck: Done
+apps/api typecheck: Prisma schema loaded from prisma/schema.prisma
+apps/api typecheck: ✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 48ms
+apps/api typecheck: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/api typecheck: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/api typecheck: Done
+exit=0
+$ pnpm test
+
+> hexlet-quiz-platform@0.0.0 test <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r --if-present test
+
+Scope: 3 of 4 workspace projects
+packages/shared test$ vitest run
+packages/shared test:  RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+packages/shared test:  ✓ src/question-validation.test.ts (98 tests) 9ms
+packages/shared test:  ✓ src/answer-scoring.test.ts (179 tests) 267ms
+packages/shared test:  Test Files  2 passed (2)
+packages/shared test:       Tests  277 passed (277)
+packages/shared test:    Start at  10:43:35
+packages/shared test:    Duration  704ms (transform 283ms, setup 0ms, collect 324ms, tests 276ms, environment 0ms, prepare 118ms)
+packages/shared test: Done
+apps/api test$ pnpm prepare:api && vitest run --exclude 'test/database.integration.test.ts'
+apps/web test$ vitest run
+apps/api test: > @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api test: > pnpm --filter @quiz/shared build && prisma generate
+apps/api test: > @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+apps/api test: > tsc
+apps/web test:  RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/web
+apps/api test: Prisma schema loaded from prisma/schema.prisma
+apps/web test:  ✓ src/quiz-api.test.ts (42 tests) 13ms
+apps/api test: ┌─────────────────────────────────────────────────────────┐
+apps/api test: │  Update available 6.19.0 -> 8.0.0-rc.34                 │
+apps/api test: │                                                         │
+apps/api test: │  This is a major update - please follow the guide at    │
+apps/api test: │  https://pris.ly/d/major-version-upgrade                │
+apps/api test: │                                                         │
+apps/api test: │  Run the following to update                            │
+apps/api test: │    npm i --save-dev prisma@latest                       │
+apps/api test: │    npm i @prisma/client@latest                          │
+apps/api test: └─────────────────────────────────────────────────────────┘
+apps/api test: ✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 49ms
+apps/api test: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/api test: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+apps/web test:  ✓ src/quiz-draft.test.ts (6 tests) 4ms
+apps/api test:  RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api test:  ✓ test/database-config.test.ts (4 tests) 2ms
+apps/api test:  ✓ test/prepare-quiz.test.ts (21 tests) 5ms
+apps/web test:  ✓ src/App.test.tsx (30 tests) 1049ms
+apps/api test:  ✓ test/health.test.ts (1 test) 92ms
+apps/api test:  ✓ test/quizzes-http.test.ts (7 tests) 118ms
+apps/api test:  Test Files  4 passed (4)
+apps/api test:       Tests  33 passed (33)
+apps/api test:    Start at  10:43:37
+apps/api test:    Duration  749ms (transform 152ms, setup 0ms, collect 949ms, tests 218ms, environment 0ms, prepare 240ms)
+apps/api test: Done
+apps/web test:  ✓ src/QuizWorkspace.test.tsx (19 tests) 1236ms
+apps/web test:    ✓ QuizWorkspace > switches single correctness exclusively and limits option removal/addition  306ms
+apps/web test:  Test Files  4 passed (4)
+apps/web test:       Tests  97 passed (97)
+apps/web test:    Start at  10:43:36
+apps/web test:    Duration  2.29s (transform 204ms, setup 434ms, collect 515ms, tests 2.30s, environment 1.81s, prepare 197ms)
+apps/web test: Done
+exit=0
+$ pnpm build
+
+> hexlet-quiz-platform@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r build
+
+Scope: 3 of 4 workspace projects
+packages/shared build$ tsc
+packages/shared build: Done
+apps/web build$ tsc --noEmit && vite build
+apps/api build$ pnpm prepare:api && tsc -p tsconfig.build.json
+apps/api build: > @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api build: > pnpm --filter @quiz/shared build && prisma generate
+apps/api build: > @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+apps/api build: > tsc
+apps/api build: Prisma schema loaded from prisma/schema.prisma
+apps/api build: ✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 42ms
+apps/api build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/api build: Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+apps/web build: vite v7.2.2 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 37 modules transformed.
+apps/api build: Done
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.40 kB │ gzip:  0.27 kB
+apps/web build: dist/assets/index-D16bYaXG.css   12.21 kB │ gzip:  3.62 kB
+apps/web build: dist/assets/index-Bf37ExKy.js   219.71 kB │ gzip: 69.25 kB
+apps/web build: ✓ built in 534ms
+apps/web build: Done
+exit=0
+$ pnpm format:check
+
+> hexlet-quiz-platform@0.0.0 format:check <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+exit=0
+$ git diff --check
+exit=0
+2026-11-23 Europe/Moscow. PM04 baseline: disposable container only, bounded HTTP load. Client report date supplied explicitly; durations use perf_counter_ns.
+STARTUP {"label": "PORT=abc", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "PORT=0", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "PORT=65536", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "PORT=3000.5", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "missing DATABASE_URL", "exit": 1, "output": "[Nest] 37344  - 11/23/2026, 10:45:35 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37344  - 11/23/2026, 10:45:35 AM   ERROR [ExceptionHandler] Error: DATABASE_URL обязателен при ENABLE_QUIZ_API=true.\n    at new PrismaService (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api/dist/database/prisma.service.js:19:19)\n    at Injector.instantiateClass (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:418:19)\n    at callback (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:70:45)\n    at async Injector.resolveConstructorParams (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:170:24)\n    at async Injector.loadInstance (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:75:13)\n    at async Injector.loadProvider (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:103:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:56:13\n    at async Promise.all (index 3)\n    at async InstanceLoader.createInstancesOfProviders (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:55:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:40:13\n"}
+STARTUP {"label": "invalid DATABASE_URL protocol", "exit": 1, "output": "[Nest] 37345  - 11/23/2026, 10:45:35 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37345  - 11/23/2026, 10:45:35 AM   ERROR [ExceptionHandler] Error: DATABASE_URL должен быть корректным PostgreSQL URL.\n    at new PrismaService (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api/dist/database/prisma.service.js:29:19)\n    at Injector.instantiateClass (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:418:19)\n    at callback (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:70:45)\n    at async Injector.resolveConstructorParams (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:170:24)\n    at async Injector.loadInstance (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:75:13)\n    at async Injector.loadProvider (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:103:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:56:13\n    at async Promise.all (index 3)\n    at async InstanceLoader.createInstancesOfProviders (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:55:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:40:13\n"}
+STARTUP {"label": "unavailable PostgreSQL at startup", "exit": 1, "output": "[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [InstanceLoader] AppModule dependencies initialized +876ms\n[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [InstanceLoader] QuizzesModule dependencies initialized +0ms\n[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [RoutesResolver] AppController {/}: +2ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RouterExplorer] Mapped {/health, GET} route +2ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RoutesResolver] QuizzesController {/quizzes}: +0ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RouterExplorer] Mapped {/quizzes, POST} route +1ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RouterExplorer] Mapped {/quizzes/:id, GET} route +0ms\nAPI не запущен. Проверьте конфигурацию подключения к БД.\n"}
+$ docker run -d --name quiz007-a244c4e466 --label quiz-diagnostics=007 --memory=512m --cpus=2 -e POSTGRES_PASSWORD -e POSTGRES_DB=quiz007_test -e POSTGRES_USER=quiz007 -p 127.0.0.1::5432 postgres:17.6-alpine
+aa3e121dd2fa73e6cdb58035348034906c6af519efa813cda3919bfb96664237
+exit=0
+$ docker port quiz007-a244c4e466 5432/tcp
+127.0.0.1:32775
+exit=0
+$ pnpm --filter @quiz/api db:validate
+
+> @quiz/api@0.0.0 db:validate <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> node --env-file-if-exists=../../.env node_modules/prisma/build/index.js validate
+
+Prisma schema loaded from prisma/schema.prisma
+The schema at prisma/schema.prisma is valid 🚀
+exit=0
+$ pnpm --filter @quiz/api db:migrate
+
+> @quiz/api@0.0.0 db:migrate <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> node --env-file-if-exists=../../.env node_modules/prisma/build/index.js migrate deploy
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "quiz007_test", schema "public" at "127.0.0.1:32775"
+
+1 migration found in prisma/migrations
+
+Applying migration `202611170001_init_quizzes`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 202611170001_init_quizzes/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+exit=0
+$ pnpm --filter @quiz/api exec prisma migrate status
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "quiz007_test", schema "public" at "127.0.0.1:32775"
+
+1 migration found in prisma/migrations
+
+Database schema is up to date!
+exit=0
+$ pnpm --filter @quiz/api db:migrate
+
+> @quiz/api@0.0.0 db:migrate <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> node --env-file-if-exists=../../.env node_modules/prisma/build/index.js migrate deploy
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "quiz007_test", schema "public" at "127.0.0.1:32775"
+
+1 migration found in prisma/migrations
+
+
+No pending migrations to apply.
+exit=0
+$ pnpm --filter @quiz/api test:integration
+
+> @quiz/api@0.0.0 test:integration <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> pnpm prepare:api && vitest run test/database.integration.test.ts
+
+
+> @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> pnpm --filter @quiz/shared build && prisma generate
+
+
+> @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+> tsc
+
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 48ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+
+
+ RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+
+ ✓ test/database.integration.test.ts (4 tests) 469ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  10:45:43
+   Duration  1.05s (transform 91ms, setup 0ms, collect 249ms, tests 469ms, environment 0ms, prepare 74ms)
+
+exit=0
+$ docker exec quiz007-a244c4e466 psql -U quiz007 -d quiz007_test -Atc SELECT version();
+PostgreSQL 17.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit
+exit=0
+HTTP default flag health: {"label": "default flag health", "status": 200, "elapsed_ms": 0.663459, "body": "{\"status\":\"ok\"}"}
+HTTP default flag quiz route absent: {"label": "default flag quiz route absent", "status": 404, "elapsed_ms": 0.922292, "body": "{\"message\":\"Cannot GET /quizzes/123e4567-e89b-42d3-a456-426614174000\",\"error\":\"Not Found\",\"statusCode\":404}"}
+$ lsof -nP -a -p 37534 -iTCP -sTCP:LISTEN
+COMMAND   PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    37534 v.nam   21u  IPv4 0xac6a89a22fd6df90      0t0  TCP 127.0.0.1:49673 (LISTEN)
+exit=0
+HTTP POST valid: {"label": "POST valid", "status": 201, "elapsed_ms": 21.206791, "body": "{\"id\":\"454e897a-f980-449d-bc66-918592d3cf80\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:45:45.109Z\",\"questions\":[{\"id\":\"d759cdd1-277c-41d1-9e68-d674590cf599\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"70b9d1fe-8fa2-4849-a679-c201530f06d2\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"}
+HTTP GET saved: {"label": "GET saved", "status": 200, "elapsed_ms": 4.248375, "body": "{\"id\":\"454e897a-f980-449d-bc66-918592d3cf80\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:45:45.109Z\",\"questions\":[{\"id\":\"d759cdd1-277c-41d1-9e68-d674590cf599\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"70b9d1fe-8fa2-4849-a679-c201530f06d2\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"}
+HTTP invalid UUID: {"label": "invalid UUID", "status": 400, "elapsed_ms": 0.8325, "body": "{\"message\":\"Validation failed (uuid v 4 is expected)\",\"error\":\"Bad Request\",\"statusCode\":400}"}
+HTTP missing quiz: {"label": "missing quiz", "status": 404, "elapsed_ms": 1.57925, "body": "{\"code\":\"QUIZ_NOT_FOUND\",\"message\":\"Квиз не найден.\"}"}
+HTTP malformed JSON: {"label": "malformed JSON", "status": 400, "elapsed_ms": 1.255166, "body": "{\"message\":\"Unexpected end of JSON input\",\"error\":\"Bad Request\",\"statusCode\":400}"}
+HTTP oversized JSON: {"label": "oversized JSON", "status": 413, "elapsed_ms": 1.065083, "body": "{\"statusCode\":413,\"message\":\"request entity too large\"}"}
+HTTP structured validation: {"label": "structured validation", "status": 400, "elapsed_ms": 0.724458, "body": "{\"code\":\"INVALID_QUIZ\",\"errors\":[{\"code\":\"OUT_OF_RANGE\",\"field\":\"questions[0].timeLimitSeconds\",\"message\":\"Значение должно быть от 5 до 120 включительно.\"}]}"}
+Vite startup GET / = 200, proxy GET /api/quizzes/:id = 200; no database credentials passed to Vite.
+Warmup: 10 GET + 10 POST, all successful, excluded from performance rows.
+PERF {"method": "GET", "repeat": 1, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.053583, "p95_ms": 2.726542, "max_ms": 7.014125, "wall_s": 0.11038291698787361, "throughput_rps": 452.9686419275627, "status_counts": {"200": 50}}
+PERF {"method": "GET", "repeat": 1, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.964125, "p95_ms": 18.125959, "max_ms": 18.874, "wall_s": 0.07052320800721645, "throughput_rps": 708.9864657728507, "status_counts": {"200": 50}}
+PERF {"method": "POST", "repeat": 1, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 5.12875, "p95_ms": 7.740167, "max_ms": 10.128458, "wall_s": 0.2846641669748351, "throughput_rps": 175.6455704676736, "status_counts": {"201": 50}}
+PERF {"method": "POST", "repeat": 1, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 6.326209, "p95_ms": 8.103959, "max_ms": 10.255083, "wall_s": 0.08580120897386223, "throughput_rps": 582.742371558326, "status_counts": {"201": 50}}
+PERF {"method": "GET", "repeat": 2, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.468084, "p95_ms": 3.339875, "max_ms": 3.419334, "wall_s": 0.1270820409990847, "throughput_rps": 393.44662398332207, "status_counts": {"200": 50}}
+PERF {"method": "GET", "repeat": 2, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.916709, "p95_ms": 4.77175, "max_ms": 4.891333, "wall_s": 0.040184583980590105, "throughput_rps": 1244.2582464994766, "status_counts": {"200": 50}}
+PERF {"method": "POST", "repeat": 2, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 4.777542, "p95_ms": 6.682792, "max_ms": 7.139167, "wall_s": 0.2446385839721188, "throughput_rps": 204.38313199891007, "status_counts": {"201": 50}}
+PERF {"method": "POST", "repeat": 2, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 6.826958, "p95_ms": 8.994125, "max_ms": 9.801291, "wall_s": 0.09057845908682793, "throughput_rps": 552.007624153446, "status_counts": {"201": 50}}
+PERF {"method": "GET", "repeat": 3, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 1.93075, "p95_ms": 2.651708, "max_ms": 4.3535, "wall_s": 0.09729533304926008, "throughput_rps": 513.8992635410917, "status_counts": {"200": 50}}
+PERF {"method": "GET", "repeat": 3, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.607541, "p95_ms": 3.07675, "max_ms": 4.012291, "wall_s": 0.03379437490366399, "throughput_rps": 1479.5361696297862, "status_counts": {"200": 50}}
+PERF {"method": "POST", "repeat": 3, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 5.203125, "p95_ms": 6.148875, "max_ms": 6.300708, "wall_s": 0.25980179209727794, "throughput_rps": 192.4544076327173, "status_counts": {"201": 50}}
+PERF {"method": "POST", "repeat": 3, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 7.04275, "p95_ms": 8.33625, "max_ms": 8.394584, "wall_s": 0.09215395792853087, "throughput_rps": 542.5702934949037, "status_counts": {"201": 50}}
+RESOURCE samples API=7 PostgreSQL=2
+$ docker stop --time 2 quiz007-a244c4e466
+Flag --time has been deprecated, use --timeout instead
+quiz007-a244c4e466
+exit=0
+HTTP GET while DB stopped: {"label": "GET while DB stopped", "status": 503, "elapsed_ms": 3.47775, "body": "{\"code\":\"DATABASE_UNAVAILABLE\",\"message\":\"Не удалось получить квиз.\"}"}
+HTTP POST while DB stopped: {"label": "POST while DB stopped", "status": 503, "elapsed_ms": 1.558959, "body": "{\"code\":\"DATABASE_UNAVAILABLE\",\"message\":\"Не удалось сохранить квиз.\"}"}
+HTTP health while DB stopped: {"label": "health while DB stopped", "status": 200, "elapsed_ms": 0.245542, "body": "{\"status\":\"ok\"}"}
+$ docker start quiz007-a244c4e466
+quiz007-a244c4e466
+exit=0
+007_DIAGNOSTICS_FAILED AssertionError:
+$ docker rm -f quiz007-a244c4e466
+quiz007-a244c4e466
+exit=0
+Cleanup: own API/Vite stopped; disposable container removed if created; existing volumes untouched.
+
+23.11.2026. Контроль автоматически назначенного host port при Docker stop/start, без запросов приложения.
+$ docker run -d --name quiz007-port-check-236af291 -e POSTGRES_PASSWORD -p 127.0.0.1::5432 postgres:17.6-alpine
+bb24cdb3c5e98b9497ef7b36b8ec2655c951fcda53770e75dd30f81e261876b7
+exit=0
+$ docker port quiz007-port-check-236af291 5432/tcp
+127.0.0.1:32777
+exit=0
+$ docker stop --timeout 1 quiz007-port-check-236af291
+quiz007-port-check-236af291
+exit=0
+$ docker start quiz007-port-check-236af291
+quiz007-port-check-236af291
+exit=0
+$ docker port quiz007-port-check-236af291 5432/tcp
+127.0.0.1:32778
+exit=0
+
+23.11.2026. REST API403: HTML fallback confirmed latest successful CI main: {"checked_date": "2026-11-23", "source": "https://github.com/ValentineNam/hexlet-quiz-platform/actions?query=branch%3Amain", "method": "public HTML embedded workflow metadata; REST API rate limited403", "run_number": 9, "url": "https://github.com/ValentineNam/hexlet-quiz-platform/actions/runs/44777143948", "state": {"status": "WORKFLOW_RUN_STATUS_COMPLETED", "conclusion": "WORKFLOW_RUN_CONCLUSION_SUCCESS"}, "commit_url": "/ValentineNam/hexlet-quiz-platform/commit/67a11ade4157fcae46655e3f2ff8fd7bfbb037e0", "created_at": "2026-11-20T16:49:05Z", "local_head": "aaaa6352e095a31c8951808196303ef976c9580f", "head_has_own_verified_ci": false}
+Контроль Docker auto-port: stop/start изменил 32777 на 32778. Первый прогон восстановления невалиден из-за нестабильной привязки. Повтор: фиксированный свободный loopback host port и проверка неизменности после restart.
+2026-11-23 Europe/Moscow. PM04 baseline: disposable container only, bounded HTTP load. Client report date supplied explicitly; durations use perf_counter_ns.
+STARTUP {"label": "PORT=abc", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "PORT=0", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "PORT=65536", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "PORT=3000.5", "exit": 1, "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"}
+STARTUP {"label": "missing DATABASE_URL", "exit": 1, "output": "[Nest] 37834  - 11/23/2026, 10:47:31 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37834  - 11/23/2026, 10:47:31 AM   ERROR [ExceptionHandler] Error: DATABASE_URL обязателен при ENABLE_QUIZ_API=true.\n    at new PrismaService (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api/dist/database/prisma.service.js:19:19)\n    at Injector.instantiateClass (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:418:19)\n    at callback (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:70:45)\n    at async Injector.resolveConstructorParams (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:170:24)\n    at async Injector.loadInstance (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:75:13)\n    at async Injector.loadProvider (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:103:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:56:13\n    at async Promise.all (index 3)\n    at async InstanceLoader.createInstancesOfProviders (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:55:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:40:13\n"}
+STARTUP {"label": "invalid DATABASE_URL protocol", "exit": 1, "output": "[Nest] 37835  - 11/23/2026, 10:47:32 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37835  - 11/23/2026, 10:47:32 AM   ERROR [ExceptionHandler] Error: DATABASE_URL должен быть корректным PostgreSQL URL.\n    at new PrismaService (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api/dist/database/prisma.service.js:29:19)\n    at Injector.instantiateClass (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:418:19)\n    at callback (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:70:45)\n    at async Injector.resolveConstructorParams (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:170:24)\n    at async Injector.loadInstance (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:75:13)\n    at async Injector.loadProvider (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:103:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:56:13\n    at async Promise.all (index 3)\n    at async InstanceLoader.createInstancesOfProviders (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:55:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:40:13\n"}
+STARTUP {"label": "unavailable PostgreSQL at startup", "exit": 1, "output": "[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [InstanceLoader] AppModule dependencies initialized +28ms\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [InstanceLoader] QuizzesModule dependencies initialized +0ms\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [RoutesResolver] AppController {/}: +2ms\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [RouterExplorer] Mapped {/health, GET} route +2ms\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [RoutesResolver] QuizzesController {/quizzes}: +0ms\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [RouterExplorer] Mapped {/quizzes, POST} route +0ms\n[Nest] 37843  - 11/23/2026, 10:47:32 AM     LOG [RouterExplorer] Mapped {/quizzes/:id, GET} route +0ms\nAPI не запущен. Проверьте конфигурацию подключения к БД.\n"}
+$ docker run -d --name quiz007-53ba16b80d --label quiz-diagnostics=007 --memory=512m --cpus=2 -e POSTGRES_PASSWORD -e POSTGRES_DB=quiz007_test -e POSTGRES_USER=quiz007 -p 127.0.0.1:49914:5432 postgres:17.6-alpine
+14325488b9075078793550d843ae5110d6f7c5cfd4a1d11a92e4185c5c41c888
+exit=0
+$ docker port quiz007-53ba16b80d 5432/tcp
+127.0.0.1:49914
+exit=0
+$ pnpm --filter @quiz/api db:validate
+
+> @quiz/api@0.0.0 db:validate <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> node --env-file-if-exists=../../.env node_modules/prisma/build/index.js validate
+
+Prisma schema loaded from prisma/schema.prisma
+The schema at prisma/schema.prisma is valid 🚀
+exit=0
+$ pnpm --filter @quiz/api db:migrate
+
+> @quiz/api@0.0.0 db:migrate <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> node --env-file-if-exists=../../.env node_modules/prisma/build/index.js migrate deploy
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "quiz007_test", schema "public" at "127.0.0.1:49914"
+
+1 migration found in prisma/migrations
+
+Applying migration `202611170001_init_quizzes`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 202611170001_init_quizzes/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+exit=0
+$ pnpm --filter @quiz/api exec prisma migrate status
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "quiz007_test", schema "public" at "127.0.0.1:49914"
+
+1 migration found in prisma/migrations
+
+Database schema is up to date!
+exit=0
+$ pnpm --filter @quiz/api db:migrate
+
+> @quiz/api@0.0.0 db:migrate <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> node --env-file-if-exists=../../.env node_modules/prisma/build/index.js migrate deploy
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "quiz007_test", schema "public" at "127.0.0.1:49914"
+
+1 migration found in prisma/migrations
+
+
+No pending migrations to apply.
+exit=0
+$ pnpm --filter @quiz/api test:integration
+
+> @quiz/api@0.0.0 test:integration <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> pnpm prepare:api && vitest run test/database.integration.test.ts
+
+
+> @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+> pnpm --filter @quiz/shared build && prisma generate
+
+
+> @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+> tsc
+
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 54ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+
+ RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+
+ ✓ test/database.integration.test.ts (4 tests) 1173ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  10:47:38
+   Duration  1.70s (transform 83ms, setup 0ms, collect 266ms, tests 1.17s, environment 0ms, prepare 71ms)
+
+exit=0
+$ docker exec quiz007-53ba16b80d psql -U quiz007 -d quiz007_test -Atc SELECT version();
+PostgreSQL 17.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit
+exit=0
+HTTP default flag health: {"label": "default flag health", "status": 200, "elapsed_ms": 3.451083, "body": "{\"status\":\"ok\"}"}
+HTTP default flag quiz route absent: {"label": "default flag quiz route absent", "status": 404, "elapsed_ms": 2.817333, "body": "{\"message\":\"Cannot GET /quizzes/123e4567-e89b-42d3-a456-426614174000\",\"error\":\"Not Found\",\"statusCode\":404}"}
+$ lsof -nP -a -p 38031 -iTCP -sTCP:LISTEN
+COMMAND   PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    38031 v.nam   21u  IPv4 0x8ea0dbf4f35aa5bd      0t0  TCP 127.0.0.1:49948 (LISTEN)
+exit=0
+HTTP POST valid: {"label": "POST valid", "status": 201, "elapsed_ms": 23.848625, "body": "{\"id\":\"9b550ef7-7e7d-4006-8273-b20bcdb4fdb7\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:47:41.055Z\",\"questions\":[{\"id\":\"b195223f-4dc1-4452-952c-e4e9b267ebdf\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"6c3eabeb-a5c8-4dee-9001-72b5d90a665d\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"}
+HTTP GET saved: {"label": "GET saved", "status": 200, "elapsed_ms": 5.253333, "body": "{\"id\":\"9b550ef7-7e7d-4006-8273-b20bcdb4fdb7\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:47:41.055Z\",\"questions\":[{\"id\":\"b195223f-4dc1-4452-952c-e4e9b267ebdf\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"6c3eabeb-a5c8-4dee-9001-72b5d90a665d\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"}
+HTTP invalid UUID: {"label": "invalid UUID", "status": 400, "elapsed_ms": 0.967334, "body": "{\"message\":\"Validation failed (uuid v 4 is expected)\",\"error\":\"Bad Request\",\"statusCode\":400}"}
+HTTP missing quiz: {"label": "missing quiz", "status": 404, "elapsed_ms": 1.97275, "body": "{\"code\":\"QUIZ_NOT_FOUND\",\"message\":\"Квиз не найден.\"}"}
+HTTP malformed JSON: {"label": "malformed JSON", "status": 400, "elapsed_ms": 1.008792, "body": "{\"message\":\"Unexpected end of JSON input\",\"error\":\"Bad Request\",\"statusCode\":400}"}
+HTTP oversized JSON: {"label": "oversized JSON", "status": 413, "elapsed_ms": 1.095875, "body": "{\"statusCode\":413,\"message\":\"request entity too large\"}"}
+HTTP structured validation: {"label": "structured validation", "status": 400, "elapsed_ms": 1.021417, "body": "{\"code\":\"INVALID_QUIZ\",\"errors\":[{\"code\":\"OUT_OF_RANGE\",\"field\":\"questions[0].timeLimitSeconds\",\"message\":\"Значение должно быть от 5 до 120 включительно.\"}]}"}
+Vite startup GET / = 200, proxy GET /api/quizzes/:id = 200; no database credentials passed to Vite.
+Warmup: 10 GET + 10 POST, all successful, excluded from performance rows.
+PERF {"method": "GET", "repeat": 1, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.569625, "p95_ms": 3.585792, "max_ms": 4.305709, "wall_s": 0.1355707080801949, "throughput_rps": 368.8112329576624, "status_counts": {"200": 50}}
+PERF {"method": "GET", "repeat": 1, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.773166, "p95_ms": 20.353834, "max_ms": 21.189125, "wall_s": 0.05957033298909664, "throughput_rps": 839.3439736043051, "status_counts": {"200": 50}}
+PERF {"method": "POST", "repeat": 1, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 6.200125, "p95_ms": 6.99, "max_ms": 10.19825, "wall_s": 0.31767312495503575, "throughput_rps": 157.39449160855872, "status_counts": {"201": 50}}
+PERF {"method": "POST", "repeat": 1, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 7.050458, "p95_ms": 8.725833, "max_ms": 11.020583, "wall_s": 0.09285220806486905, "throughput_rps": 538.4901559375804, "status_counts": {"201": 50}}
+PERF {"method": "GET", "repeat": 2, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 1.927834, "p95_ms": 2.473291, "max_ms": 2.571292, "wall_s": 0.09637108293827623, "throughput_rps": 518.8278317057411, "status_counts": {"200": 50}}
+PERF {"method": "GET", "repeat": 2, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 3.095708, "p95_ms": 5.115625, "max_ms": 5.837208, "wall_s": 0.043458124971948564, "throughput_rps": 1150.5328412644149, "status_counts": {"200": 50}}
+PERF {"method": "POST", "repeat": 2, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 6.112167, "p95_ms": 6.713375, "max_ms": 6.917375, "wall_s": 0.30766387504991144, "throughput_rps": 162.51501737696256, "status_counts": {"201": 50}}
+PERF {"method": "POST", "repeat": 2, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 6.887167, "p95_ms": 7.827542, "max_ms": 7.837333, "wall_s": 0.08965641702525318, "throughput_rps": 557.684565800981, "status_counts": {"201": 50}}
+PERF {"method": "GET", "repeat": 3, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.0355, "p95_ms": 2.357, "max_ms": 2.689834, "wall_s": 0.10144666593987495, "throughput_rps": 492.86982018348266, "status_counts": {"200": 50}}
+PERF {"method": "GET", "repeat": 3, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 2.740959, "p95_ms": 4.382334, "max_ms": 4.583541, "wall_s": 0.03804854105692357, "throughput_rps": 1314.110833453407, "status_counts": {"200": 50}}
+PERF {"method": "POST", "repeat": 3, "concurrency": 1, "requests": 50, "success": 50, "errors": 0, "p50_ms": 5.679, "p95_ms": 7.546792, "max_ms": 8.859667, "wall_s": 0.2924073339672759, "throughput_rps": 170.994343136399, "status_counts": {"201": 50}}
+PERF {"method": "POST", "repeat": 3, "concurrency": 4, "requests": 50, "success": 50, "errors": 0, "p50_ms": 6.92025, "p95_ms": 8.093292, "max_ms": 8.398334, "wall_s": 0.08980404201429337, "throughput_rps": 556.7678122109683, "status_counts": {"201": 50}}
+RESOURCE samples API=7 PostgreSQL=2
+$ docker stop --timeout 2 quiz007-53ba16b80d
+quiz007-53ba16b80d
+exit=0
+HTTP GET while DB stopped: {"label": "GET while DB stopped", "status": 503, "elapsed_ms": 3.93675, "body": "{\"code\":\"DATABASE_UNAVAILABLE\",\"message\":\"Не удалось получить квиз.\"}"}
+HTTP POST while DB stopped: {"label": "POST while DB stopped", "status": 503, "elapsed_ms": 1.943333, "body": "{\"code\":\"DATABASE_UNAVAILABLE\",\"message\":\"Не удалось сохранить квиз.\"}"}
+HTTP health while DB stopped: {"label": "health while DB stopped", "status": 200, "elapsed_ms": 0.384084, "body": "{\"status\":\"ok\"}"}
+$ docker start quiz007-53ba16b80d
+quiz007-53ba16b80d
+exit=0
+$ docker port quiz007-53ba16b80d 5432/tcp
+127.0.0.1:49914
+exit=0
+HTTP POST after DB recovery: {"label": "POST after DB recovery", "status": 201, "elapsed_ms": 14.643209, "body": "{\"id\":\"4b85b671-75ec-4165-a780-782b4f039905\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:47:45.449Z\",\"questions\":[{\"id\":\"e2bf9d2e-d23e-41ba-9897-d58231685e90\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"bfa2c8d3-ee4b-4bde-a5c9-a91c3c87c24e\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"}
+Recovery without API restart: True, elapsed_seconds=0.6056625000201166
+$ docker exec quiz007-53ba16b80d psql -U quiz007 -d quiz007_test -Atc SELECT count(*) FROM "Quiz"; SELECT count(*) FROM "Question"; SELECT count(*) FROM "AnswerOption";
+312
+624
+2496
+exit=0
+007_DIAGNOSTICS_COMPLETE performance_errors=0
+$ docker rm -f quiz007-53ba16b80d
+quiz007-53ba16b80d
+exit=0
+Cleanup: own API/Vite stopped; disposable container removed if created; existing volumes untouched.
+
+23.11.2026. Static safety check: {"date": "2026-11-23", "scope": "tracked text files and built frontend JS; regex check, not exhaustive secret/CVE audit", "tracked_env_files": [".env.example"], "private_key_or_github_token_markers": [], "postgres_url_locations": [{"file": ".env.example", "line": 7, "documented_placeholder_or_test_fixture": true}, {"file": ".github/workflows/ci.yml", "line": 22, "documented_placeholder_or_test_fixture": true}, {"file": ".github/workflows/ci.yml", "line": 23, "documented_placeholder_or_test_fixture": true}], "frontend_js_assets_checked": 1, "frontend_database_configuration_hits": []}
+
+23.11.2026. Итоговая проверка очистки: docker ps -a --filter name=quiz007- --format names/status дал пустой вывод (exit0); docker-compose ps (exit0) показал исходный hexlet-quiz-platform-postgres-1 healthy, 127.0.0.1:5432, Up 2 weeks. Пользовательский volume не использовался стендом.
+
+23.11.2026. Script syntax OK, local links OK, SHA256 of 137 original tracked files unchanged; final results complete/cleaned and 0 performance errors.
+
+$ pnpm format:check
+
+> hexlet-quiz-platform@0.0.0 format:check <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+exit=0
+
+$ git diff --check
+
+exit=0
+
+23.11.2026. В документацию добавлено ограничение первого прогона: его restart port не сохранён; изменение auto-port подтверждено отдельным контролем.
+
+$ pnpm format:check
+
+> hexlet-quiz-platform@0.0.0 format:check <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+exit=0
+
+$ git diff --check
+
+exit=0

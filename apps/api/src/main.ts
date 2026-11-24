@@ -2,19 +2,29 @@ import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
+import { readPort, PortConfigurationError } from './startup-config';
+import { installShutdownWatchdog } from './shutdown-watchdog';
 
 async function bootstrap() {
-  const port = Number(process.env.PORT ?? 3000);
-  if (!Number.isInteger(port) || port < 1 || port > 65535)
-    throw new Error('PORT должен быть от 1 до 65535.');
+  const port = readPort(process.env.PORT);
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule.configure(process.env.ENABLE_QUIZ_API === 'true'),
   );
   app.useBodyParser('json', { limit: '100kb' });
-  app.enableShutdownHooks();
-  await app.listen(port, '127.0.0.1');
+  const disposeWatchdog = installShutdownWatchdog();
+  try {
+    app.enableShutdownHooks();
+    await app.listen(port, '127.0.0.1');
+  } catch (error) {
+    disposeWatchdog();
+    throw error;
+  }
 }
-void bootstrap().catch(() => {
-  console.error('API не запущен. Проверьте конфигурацию подключения к БД.');
+void bootstrap().catch((error: unknown) => {
+  console.error(
+    error instanceof PortConfigurationError
+      ? error.message
+      : 'API не запущен. Проверьте конфигурацию подключения к БД.',
+  );
   process.exitCode = 1;
 });

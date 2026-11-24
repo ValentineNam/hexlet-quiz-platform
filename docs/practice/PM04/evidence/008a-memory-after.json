@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-23",
+  "label": "after",
+  "head": "aaaa6352e095a31c8951808196303ef976c9580f",
+  "compiledSha256": "ba04f6a4f32edc0db4a5c8b5f8cc9a66eb7737a3adbcfd8bbef39bcb2929f949",
+  "scope": "15000 probes, accelerated timer model, forced GC; no HTTP or PostgreSQL requests",
+  "samples": [
+    {
+      "probes": 0,
+      "heapBytes": 9020144
+    },
+    {
+      "probes": 5000,
+      "heapBytes": 8947928,
+      "calls": 1,
+      "rawSubscriptions": 1,
+      "derivedSubscriptions": 0
+    },
+    {
+      "probes": 10000,
+      "heapBytes": 8943920,
+      "calls": 1,
+      "rawSubscriptions": 1,
+      "derivedSubscriptions": 0
+    },
+    {
+      "probes": 15000,
+      "heapBytes": 8944256,
+      "calls": 1,
+      "rawSubscriptions": 1,
+      "derivedSubscriptions": 0
+    },
+    {
+      "stage": "operation settled",
+      "heapBytes": 8943128,
+      "calls": 1
+    }
+  ]
+}

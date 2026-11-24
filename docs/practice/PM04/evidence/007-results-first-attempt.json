@@ -1,0 +1,489 @@
+{
+  "date": "2026-11-23",
+  "head": "aaaa6352e095a31c8951808196303ef976c9580f",
+  "requests_per_cell_repeat": 50,
+  "repeats": 3,
+  "concurrency": [1, 4],
+  "warmup_per_method": 10,
+  "http": [
+    {
+      "label": "default flag health",
+      "status": 200,
+      "elapsed_ms": 0.663459,
+      "body": "{\"status\":\"ok\"}"
+    },
+    {
+      "label": "default flag quiz route absent",
+      "status": 404,
+      "elapsed_ms": 0.922292,
+      "body": "{\"message\":\"Cannot GET /quizzes/123e4567-e89b-42d3-a456-426614174000\",\"error\":\"Not Found\",\"statusCode\":404}"
+    },
+    {
+      "label": "POST valid",
+      "status": 201,
+      "elapsed_ms": 21.206791,
+      "body": "{\"id\":\"454e897a-f980-449d-bc66-918592d3cf80\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:45:45.109Z\",\"questions\":[{\"id\":\"d759cdd1-277c-41d1-9e68-d674590cf599\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"70b9d1fe-8fa2-4849-a679-c201530f06d2\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"
+    },
+    {
+      "label": "GET saved",
+      "status": 200,
+      "elapsed_ms": 4.248375,
+      "body": "{\"id\":\"454e897a-f980-449d-bc66-918592d3cf80\",\"title\":\"PM04 synthetic baseline\",\"description\":\"Synthetic data, no user records\",\"category\":\"\",\"createdAt\":\"2026-11-23T07:45:45.109Z\",\"questions\":[{\"id\":\"d759cdd1-277c-41d1-9e68-d674590cf599\",\"type\":\"single\",\"text\":\"Synthetic question single\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]},{\"id\":\"70b9d1fe-8fa2-4849-a679-c201530f06d2\",\"type\":\"multiple\",\"text\":\"Synthetic question multiple\",\"timeLimitSeconds\":30,\"maxPoints\":1000,\"options\":[{\"id\":\"0\",\"text\":\"Option 0\"},{\"id\":\"1\",\"text\":\"Option 1\"},{\"id\":\"2\",\"text\":\"Option 2\"},{\"id\":\"3\",\"text\":\"Option 3\"}]}]}"
+    },
+    {
+      "label": "invalid UUID",
+      "status": 400,
+      "elapsed_ms": 0.8325,
+      "body": "{\"message\":\"Validation failed (uuid v 4 is expected)\",\"error\":\"Bad Request\",\"statusCode\":400}"
+    },
+    {
+      "label": "missing quiz",
+      "status": 404,
+      "elapsed_ms": 1.57925,
+      "body": "{\"code\":\"QUIZ_NOT_FOUND\",\"message\":\"Квиз не найден.\"}"
+    },
+    {
+      "label": "malformed JSON",
+      "status": 400,
+      "elapsed_ms": 1.255166,
+      "body": "{\"message\":\"Unexpected end of JSON input\",\"error\":\"Bad Request\",\"statusCode\":400}"
+    },
+    {
+      "label": "oversized JSON",
+      "status": 413,
+      "elapsed_ms": 1.065083,
+      "body": "{\"statusCode\":413,\"message\":\"request entity too large\"}"
+    },
+    {
+      "label": "structured validation",
+      "status": 400,
+      "elapsed_ms": 0.724458,
+      "body": "{\"code\":\"INVALID_QUIZ\",\"errors\":[{\"code\":\"OUT_OF_RANGE\",\"field\":\"questions[0].timeLimitSeconds\",\"message\":\"Значение должно быть от 5 до 120 включительно.\"}]}"
+    },
+    {
+      "label": "GET while DB stopped",
+      "status": 503,
+      "elapsed_ms": 3.47775,
+      "body": "{\"code\":\"DATABASE_UNAVAILABLE\",\"message\":\"Не удалось получить квиз.\"}"
+    },
+    {
+      "label": "POST while DB stopped",
+      "status": 503,
+      "elapsed_ms": 1.558959,
+      "body": "{\"code\":\"DATABASE_UNAVAILABLE\",\"message\":\"Не удалось сохранить квиз.\"}"
+    },
+    {
+      "label": "health while DB stopped",
+      "status": 200,
+      "elapsed_ms": 0.245542,
+      "body": "{\"status\":\"ok\"}"
+    }
+  ],
+  "startup": [
+    {
+      "label": "PORT=abc",
+      "exit": 1,
+      "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"
+    },
+    {
+      "label": "PORT=0",
+      "exit": 1,
+      "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"
+    },
+    {
+      "label": "PORT=65536",
+      "exit": 1,
+      "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"
+    },
+    {
+      "label": "PORT=3000.5",
+      "exit": 1,
+      "output": "API не запущен. Проверьте конфигурацию подключения к БД.\n"
+    },
+    {
+      "label": "missing DATABASE_URL",
+      "exit": 1,
+      "output": "[Nest] 37344  - 11/23/2026, 10:45:35 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37344  - 11/23/2026, 10:45:35 AM   ERROR [ExceptionHandler] Error: DATABASE_URL обязателен при ENABLE_QUIZ_API=true.\n    at new PrismaService (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api/dist/database/prisma.service.js:19:19)\n    at Injector.instantiateClass (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:418:19)\n    at callback (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:70:45)\n    at async Injector.resolveConstructorParams (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:170:24)\n    at async Injector.loadInstance (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:75:13)\n    at async Injector.loadProvider (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:103:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:56:13\n    at async Promise.all (index 3)\n    at async InstanceLoader.createInstancesOfProviders (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:55:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:40:13\n"
+    },
+    {
+      "label": "invalid DATABASE_URL protocol",
+      "exit": 1,
+      "output": "[Nest] 37345  - 11/23/2026, 10:45:35 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37345  - 11/23/2026, 10:45:35 AM   ERROR [ExceptionHandler] Error: DATABASE_URL должен быть корректным PostgreSQL URL.\n    at new PrismaService (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api/dist/database/prisma.service.js:29:19)\n    at Injector.instantiateClass (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:418:19)\n    at callback (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:70:45)\n    at async Injector.resolveConstructorParams (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:170:24)\n    at async Injector.loadInstance (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:75:13)\n    at async Injector.loadProvider (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/injector.js:103:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:56:13\n    at async Promise.all (index 3)\n    at async InstanceLoader.createInstancesOfProviders (<HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:55:9)\n    at async <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/node_modules/.pnpm/@nestjs+core@11.1.8_@nestjs+common@11.1.8_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_679371b49d22e8586c3e5c197689c450/node_modules/@nestjs/core/injector/instance-loader.js:40:13\n"
+    },
+    {
+      "label": "unavailable PostgreSQL at startup",
+      "exit": 1,
+      "output": "[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [NestFactory] Starting Nest application...\n[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [InstanceLoader] AppModule dependencies initialized +876ms\n[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [InstanceLoader] QuizzesModule dependencies initialized +0ms\n[Nest] 37353  - 11/23/2026, 10:45:36 AM     LOG [RoutesResolver] AppController {/}: +2ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RouterExplorer] Mapped {/health, GET} route +2ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RoutesResolver] QuizzesController {/quizzes}: +0ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RouterExplorer] Mapped {/quizzes, POST} route +1ms\n[Nest] 37353  - 11/23/2026, 10:45:37 AM     LOG [RouterExplorer] Mapped {/quizzes/:id, GET} route +0ms\nAPI не запущен. Проверьте конфигурацию подключения к БД.\n"
+    }
+  ],
+  "performance": [
+    {
+      "method": "GET",
+      "repeat": 1,
+      "concurrency": 1,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 2.053583,
+      "p95_ms": 2.726542,
+      "max_ms": 7.014125,
+      "wall_s": 0.11038291698787361,
+      "throughput_rps": 452.9686419275627,
+      "status_counts": {
+        "200": 50
+      },
+      "latencies_ms": [
+        2.834375, 2.487417, 2.230667, 2.01025, 2.207209, 2.202208, 7.014125,
+        2.088209, 2.011625, 2.010375, 1.87475, 2.059709, 2.284041, 2.078416,
+        2.260167, 1.862125, 1.732125, 1.737, 1.709875, 2.074, 2.061125,
+        2.053583, 1.991709, 2.036167, 2.068541, 1.97375, 2.513041, 2.25425,
+        2.134417, 2.049334, 1.987917, 2.034917, 2.006709, 2.016208, 1.946542,
+        2.017083, 2.201375, 2.133042, 2.067167, 2.147, 2.619708, 2.726542,
+        2.439209, 2.11325, 1.855917, 2.053084, 2.000209, 2.032042, 1.985375,
+        1.963375
+      ]
+    },
+    {
+      "method": "GET",
+      "repeat": 1,
+      "concurrency": 4,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 2.964125,
+      "p95_ms": 18.125959,
+      "max_ms": 18.874,
+      "wall_s": 0.07052320800721645,
+      "throughput_rps": 708.9864657728507,
+      "status_counts": {
+        "200": 50
+      },
+      "latencies_ms": [
+        18.874, 4.296334, 18.125959, 18.147167, 2.156667, 2.096916, 3.57075,
+        2.675417, 3.02125, 3.733625, 3.1685, 3.179542, 3.288042, 2.964125,
+        3.315209, 2.913209, 2.602833, 2.862459, 2.956875, 2.944708, 2.59325,
+        3.292083, 2.980667, 3.148041, 3.140708, 3.225583, 2.871791, 2.861625,
+        3.001583, 2.841625, 2.366917, 2.357, 2.383375, 3.093209, 2.778125,
+        2.695917, 2.386041, 2.928625, 3.099333, 3.1085, 3.054458, 3.3035,
+        2.748708, 2.744875, 2.751834, 2.9515, 2.996916, 3.083416, 2.932625,
+        3.090333
+      ]
+    },
+    {
+      "method": "POST",
+      "repeat": 1,
+      "concurrency": 1,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 5.12875,
+      "p95_ms": 7.740167,
+      "max_ms": 10.128458,
+      "wall_s": 0.2846641669748351,
+      "throughput_rps": 175.6455704676736,
+      "status_counts": {
+        "201": 50
+      },
+      "latencies_ms": [
+        10.128458, 7.740167, 6.854042, 6.362625, 6.513041, 7.069666, 6.000583,
+        6.032292, 6.083459, 5.942542, 6.591125, 7.611792, 6.935625, 6.197167,
+        6.085167, 5.967083, 6.481958, 5.696417, 6.392458, 8.746083, 6.024583,
+        5.153542, 5.190666, 4.903583, 5.067834, 4.896291, 5.115708, 4.700375,
+        4.698458, 4.991792, 4.818792, 4.800791, 4.662209, 4.8165, 4.961708,
+        5.119041, 4.855541, 4.87975, 5.074083, 5.12875, 5.10875, 4.813791,
+        5.005208, 4.639375, 4.662125, 5.384209, 5.1515, 4.842916, 4.591875,
+        5.032542
+      ]
+    },
+    {
+      "method": "POST",
+      "repeat": 1,
+      "concurrency": 4,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 6.326209,
+      "p95_ms": 8.103959,
+      "max_ms": 10.255083,
+      "wall_s": 0.08580120897386223,
+      "throughput_rps": 582.742371558326,
+      "status_counts": {
+        "201": 50
+      },
+      "latencies_ms": [
+        7.646041, 9.894958, 8.103959, 10.255083, 6.510041, 6.703834, 6.967625,
+        6.891917, 6.155708, 6.247875, 6.178792, 6.641458, 6.276083, 6.3215,
+        6.292709, 5.970208, 7.089375, 7.248208, 7.911125, 7.811959, 6.843666,
+        7.018041, 6.826334, 6.638417, 6.290334, 6.593583, 6.45675, 6.71325,
+        5.906167, 6.127833, 6.011666, 6.010958, 6.033167, 5.465042, 6.146667,
+        6.1415, 5.745291, 6.137292, 6.412875, 6.384583, 6.165166, 6.470875,
+        6.326209, 6.134125, 6.112625, 6.870792, 6.766583, 5.937458, 6.20525,
+        5.838292
+      ]
+    },
+    {
+      "method": "GET",
+      "repeat": 2,
+      "concurrency": 1,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 2.468084,
+      "p95_ms": 3.339875,
+      "max_ms": 3.419334,
+      "wall_s": 0.1270820409990847,
+      "throughput_rps": 393.44662398332207,
+      "status_counts": {
+        "200": 50
+      },
+      "latencies_ms": [
+        2.219333, 2.468084, 2.681458, 2.341625, 2.451125, 2.326833, 2.57375,
+        1.791875, 2.074708, 2.360041, 2.5625, 1.945417, 1.87025, 2.449416,
+        2.266333, 2.420125, 2.2115, 2.942666, 2.136208, 2.307791, 3.314667,
+        2.613167, 2.620292, 3.266833, 2.355542, 2.405292, 2.84375, 2.348125,
+        2.410792, 3.376834, 2.543125, 2.352708, 2.809291, 2.632417, 2.077292,
+        2.710541, 3.11725, 1.92975, 1.840042, 2.731416, 2.107292, 2.645084,
+        3.419334, 2.731125, 2.515125, 2.737666, 2.785208, 2.890875, 3.339875,
+        3.029625
+      ]
+    },
+    {
+      "method": "GET",
+      "repeat": 2,
+      "concurrency": 4,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 2.916709,
+      "p95_ms": 4.77175,
+      "max_ms": 4.891333,
+      "wall_s": 0.040184583980590105,
+      "throughput_rps": 1244.2582464994766,
+      "status_counts": {
+        "200": 50
+      },
+      "latencies_ms": [
+        4.77175, 4.891333, 4.883125, 4.414583, 3.067375, 3.024667, 3.063917,
+        2.499833, 2.693666, 2.780125, 2.877958, 2.633042, 3.584834, 3.549375,
+        3.565416, 3.580583, 3.432666, 3.020375, 2.78225, 3.124125, 3.376833,
+        3.449917, 2.81, 3.170875, 2.954875, 3.352834, 3.32925, 2.822917,
+        2.360583, 2.481083, 2.383, 2.480959, 2.706625, 2.517542, 2.916709,
+        3.094625, 2.760041, 2.977334, 2.096625, 2.316791, 2.7185, 2.716,
+        2.535417, 2.7665, 3.152292, 3.322625, 3.049916, 2.694709, 2.676, 2.62
+      ]
+    },
+    {
+      "method": "POST",
+      "repeat": 2,
+      "concurrency": 1,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 4.777542,
+      "p95_ms": 6.682792,
+      "max_ms": 7.139167,
+      "wall_s": 0.2446385839721188,
+      "throughput_rps": 204.38313199891007,
+      "status_counts": {
+        "201": 50
+      },
+      "latencies_ms": [
+        7.139167, 4.954042, 6.682792, 7.130166, 5.715625, 4.55525, 4.936209,
+        4.472667, 5.7845, 5.62025, 4.5665, 5.401083, 4.777542, 4.912125,
+        5.110625, 4.595834, 4.961166, 4.364583, 4.827291, 4.663958, 4.222042,
+        4.233667, 4.548292, 5.064292, 4.908541, 4.304541, 4.552375, 4.988458,
+        4.789834, 4.873916, 5.296834, 4.635541, 4.959875, 4.467667, 4.572083,
+        5.243916, 4.534375, 4.327541, 5.100375, 5.588083, 4.605708, 5.017083,
+        4.98325, 4.39725, 4.349583, 4.398334, 3.977958, 4.186, 4.038917,
+        4.151625
+      ]
+    },
+    {
+      "method": "POST",
+      "repeat": 2,
+      "concurrency": 4,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 6.826958,
+      "p95_ms": 8.994125,
+      "max_ms": 9.801291,
+      "wall_s": 0.09057845908682793,
+      "throughput_rps": 552.007624153446,
+      "status_counts": {
+        "201": 50
+      },
+      "latencies_ms": [
+        7.149458, 7.74625, 7.799417, 6.952375, 6.97075, 7.484458, 7.134167,
+        6.88775, 6.949417, 6.996291, 6.348083, 6.826958, 6.659292, 6.713208,
+        6.662209, 6.054458, 6.53125, 6.75575, 6.485209, 6.745542, 6.776833,
+        6.820833, 6.274875, 7.162417, 7.215666, 6.840958, 6.736167, 6.138334,
+        6.937833, 6.940792, 9.801291, 9.761708, 8.994125, 8.308292, 7.645416,
+        6.878417, 6.82225, 6.887666, 7.560583, 6.589583, 6.941209, 7.023959,
+        6.301917, 6.817, 6.765958, 6.55875, 6.598666, 5.751541, 6.294459,
+        5.836375
+      ]
+    },
+    {
+      "method": "GET",
+      "repeat": 3,
+      "concurrency": 1,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 1.93075,
+      "p95_ms": 2.651708,
+      "max_ms": 4.3535,
+      "wall_s": 0.09729533304926008,
+      "throughput_rps": 513.8992635410917,
+      "status_counts": {
+        "200": 50
+      },
+      "latencies_ms": [
+        1.98175, 2.102458, 1.638417, 1.33975, 1.535, 1.588458, 1.507417,
+        1.980625, 2.133167, 1.966958, 2.709959, 2.572334, 4.3535, 2.345083,
+        1.705667, 1.947542, 1.933042, 2.651708, 1.992, 1.998083, 2.173584,
+        2.348208, 2.567125, 1.96125, 2.19225, 1.780375, 1.93075, 1.96875,
+        1.85275, 2.107167, 1.458917, 1.813292, 1.459084, 1.466916, 1.440583,
+        1.50425, 1.357583, 1.54425, 1.749208, 1.876542, 1.719375, 1.954709,
+        1.9375, 1.813125, 1.815792, 2.467375, 1.559375, 1.439667, 1.743709,
+        2.202708
+      ]
+    },
+    {
+      "method": "GET",
+      "repeat": 3,
+      "concurrency": 4,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 2.607541,
+      "p95_ms": 3.07675,
+      "max_ms": 4.012291,
+      "wall_s": 0.03379437490366399,
+      "throughput_rps": 1479.5361696297862,
+      "status_counts": {
+        "200": 50
+      },
+      "latencies_ms": [
+        2.883125, 2.932083, 3.07675, 3.083875, 2.171541, 2.512542, 2.37275,
+        2.377292, 2.118125, 2.126708, 1.902708, 2.249833, 2.3125, 2.639125,
+        2.394458, 2.314667, 2.147334, 2.49925, 2.900583, 2.907042, 2.632375,
+        2.610209, 2.444708, 2.436166, 2.899583, 2.60975, 2.133959, 2.757417,
+        2.7325, 2.668834, 2.640417, 2.643541, 2.770459, 2.418, 2.442583,
+        2.587791, 2.9985, 3.058292, 2.676541, 4.012291, 3.003583, 3.033291,
+        2.429125, 2.702417, 2.299959, 2.412459, 2.524542, 2.918583, 2.607541,
+        2.433375
+      ]
+    },
+    {
+      "method": "POST",
+      "repeat": 3,
+      "concurrency": 1,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 5.203125,
+      "p95_ms": 6.148875,
+      "max_ms": 6.300708,
+      "wall_s": 0.25980179209727794,
+      "throughput_rps": 192.4544076327173,
+      "status_counts": {
+        "201": 50
+      },
+      "latencies_ms": [
+        5.203125, 4.64875, 4.278292, 4.604584, 4.649708, 4.058584, 4.052292,
+        4.729959, 4.345417, 4.634833, 4.06075, 4.4695, 4.594792, 6.148875,
+        4.5265, 4.897709, 4.607416, 4.556083, 4.307875, 5.048458, 6.096291,
+        6.300708, 5.696667, 5.569667, 6.002875, 5.769, 5.064792, 5.19575,
+        5.866917, 5.860583, 6.162291, 5.984125, 5.971916, 5.390167, 5.196333,
+        5.30875, 5.082042, 5.561292, 5.691166, 5.589416, 5.229625, 4.8185,
+        4.835584, 5.625208, 5.301041, 5.524083, 5.672292, 5.23075, 5.975, 5.664
+      ]
+    },
+    {
+      "method": "POST",
+      "repeat": 3,
+      "concurrency": 4,
+      "requests": 50,
+      "success": 50,
+      "errors": 0,
+      "p50_ms": 7.04275,
+      "p95_ms": 8.33625,
+      "max_ms": 8.394584,
+      "wall_s": 0.09215395792853087,
+      "throughput_rps": 542.5702934949037,
+      "status_counts": {
+        "201": 50
+      },
+      "latencies_ms": [
+        8.267959, 8.33625, 8.365583, 8.394584, 8.055708, 8.062625, 7.849333,
+        7.548125, 7.13275, 7.19275, 7.249, 7.242875, 7.0475, 7.018333, 6.673084,
+        6.40625, 7.969, 7.546916, 8.03525, 7.508167, 6.777583, 7.301833,
+        6.625708, 6.561583, 7.051708, 7.525125, 7.473417, 7.028458, 6.91725,
+        6.693334, 6.392042, 6.393833, 6.988292, 6.713917, 7.247667, 7.2355,
+        7.355583, 6.937667, 6.564083, 6.707583, 6.387459, 6.873583, 7.04275,
+        6.750459, 7.131333, 7.002417, 6.744084, 6.839791, 5.437625, 5.308708
+      ]
+    }
+  ],
+  "resources": {
+    "api": [
+      {
+        "offset_s": 0.004870707984082401,
+        "cpu_percent_ps": 9.1,
+        "rss_kib": 105648
+      },
+      {
+        "offset_s": 0.2588503329316154,
+        "cpu_percent_ps": 37.5,
+        "rss_kib": 111104
+      },
+      {
+        "offset_s": 0.5133979159872979,
+        "cpu_percent_ps": 33.6,
+        "rss_kib": 113168
+      },
+      {
+        "offset_s": 0.7713538330281153,
+        "cpu_percent_ps": 60.9,
+        "rss_kib": 117280
+      },
+      {
+        "offset_s": 1.0266003749566153,
+        "cpu_percent_ps": 49.9,
+        "rss_kib": 122000
+      },
+      {
+        "offset_s": 1.280597582925111,
+        "cpu_percent_ps": 66.8,
+        "rss_kib": 129392
+      },
+      {
+        "offset_s": 1.5377804159652442,
+        "cpu_percent_ps": 49.1,
+        "rss_kib": 129600
+      }
+    ],
+    "postgres": [
+      {
+        "offset_s": 1.0264424999477342,
+        "cpu_percent": "23.37%",
+        "memory_usage_limit": "33.47MiB / 512MiB"
+      },
+      {
+        "offset_s": 3.0150642909575254,
+        "cpu_percent": "0.12%",
+        "memory_usage_limit": "33.69MiB / 512MiB"
+      }
+    ]
+  },
+  "postgres_version": "PostgreSQL 17.6 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+  "api_bind": "127.0.0.1:49673",
+  "database_bind": "127.0.0.1:32775",
+  "payload_bytes": 752,
+  "completed": false,
+  "failure": "AssertionError: ",
+  "container_removed": true,
+  "owned_processes_stopped": true
+}

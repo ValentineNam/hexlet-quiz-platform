@@ -171,4 +171,11 @@ describe('real PostgreSQL + Prisma + NestJS', () => {
     ).rejects.toThrow();
     expect(await prisma.quiz.count({ where: { title } })).toBe(0);
   });
+  it('checks real PostgreSQL readiness with no answer data in response', async () => {
+    if (!app) throw new Error('Database test setup failed');
+    const response = await request(app.getHttpServer())
+      .get('/ready')
+      .expect(200);
+    expect(response.body).toEqual({ status: 'ready' });
+  });
 });

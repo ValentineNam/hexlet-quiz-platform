@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-23",
+  "scope": "tracked text files and built frontend JS; regex check, not exhaustive secret/CVE audit",
+  "tracked_env_files": [".env.example"],
+  "private_key_or_github_token_markers": [],
+  "postgres_url_locations": [
+    {
+      "file": ".env.example",
+      "line": 7,
+      "documented_placeholder_or_test_fixture": true
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "line": 22,
+      "documented_placeholder_or_test_fixture": true
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "line": 23,
+      "documented_placeholder_or_test_fixture": true
+    }
+  ],
+  "frontend_js_assets_checked": 1,
+  "frontend_database_configuration_hits": []
+}

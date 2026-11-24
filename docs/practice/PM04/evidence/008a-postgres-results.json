@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-23",
+  "shutdown_deadline_ms": 5000,
+  "shutdown_tolerance_ms": 1500,
+  "shutdown": [
+    {
+      "case": "healthy SIGTERM after readiness recovery",
+      "signal": "SIGTERM",
+      "mixed_signals": false,
+      "exit": -15,
+      "elapsed_ms": 3.875333000905812,
+      "deadline_markers": 0,
+      "children_before": [],
+      "children_remaining": []
+    },
+    {
+      "case": "paused DB without readiness query",
+      "signal": "SIGTERM",
+      "mixed_signals": false,
+      "exit": -15,
+      "elapsed_ms": 3.815624979324639,
+      "deadline_markers": 0,
+      "children_before": [],
+      "children_remaining": []
+    },
+    {
+      "case": "paused DB with pending readiness",
+      "signal": "SIGTERM",
+      "mixed_signals": true,
+      "exit": 1,
+      "elapsed_ms": 5032.01587498188,
+      "deadline_markers": 1,
+      "children_before": [],
+      "children_remaining": []
+    },
+    {
+      "case": "restart after forced termination, healthy SIGINT",
+      "signal": "SIGINT",
+      "mixed_signals": false,
+      "exit": -2,
+      "elapsed_ms": 3.711916971951723,
+      "deadline_markers": 0,
+      "children_before": [],
+      "children_remaining": []
+    }
+  ],
+  "waves": [
+    {
+      "wave": 1,
+      "requests": 8,
+      "latencies_ms": [
+        1507.6825000578538, 1506.9597499677911, 1507.7075420413166,
+        1507.5394159648567, 1507.6300840592012, 1507.8861659858376,
+        1507.991792052053, 1507.8824579250067
+      ],
+      "statuses": [503, 503, 503, 503, 503, 503, 503, 503]
+    },
+    {
+      "wave": 2,
+      "requests": 8,
+      "latencies_ms": [
+        2.240792033262551, 3.3102500019595027, 3.9364160038530827,
+        3.830667003057897, 4.211417050100863, 2.4412909988313913,
+        2.359375008381903, 4.021207918412983
+      ],
+      "statuses": [503, 503, 503, 503, 503, 503, 503, 503]
+    },
+    {
+      "wave": 3,
+      "requests": 8,
+      "latencies_ms": [
+        2.116292016580701, 1.5012079384177923, 1.6191250178962946,
+        1.9830419914796948, 2.0649590296670794, 1.3749999925494194,
+        2.702999976463616, 1.740708015859127
+      ],
+      "statuses": [503, 503, 503, 503, 503, 503, 503, 503]
+    },
+    {
+      "wave": 4,
+      "requests": 8,
+      "latencies_ms": [
+        2.482249983586371, 3.389667021110654, 1.869166037067771,
+        3.5465830005705357, 3.507459070533514, 3.859249991364777,
+        2.3937500081956387, 2.668707980774343
+      ],
+      "statuses": [503, 503, 503, 503, 503, 503, 503, 503]
+    }
+  ],
+  "ready_after_unpause": {
+    "status": 200,
+    "body": "{\"status\":\"ready\"}",
+    "ms": 3.3405000576749444
+  },
+  "pending_http_during_shutdown": {
+    "status": 503,
+    "body": "{\"status\":\"not_ready\"}",
+    "ms": 1506.2583750113845
+  },
+  "ready_after_forced_restart": {
+    "status": 200,
+    "body": "{\"status\":\"ready\"}",
+    "ms": 8.303166017867625
+  },
+  "completed": true,
+  "container_removed": true,
+  "owned_api_stopped": true
+}

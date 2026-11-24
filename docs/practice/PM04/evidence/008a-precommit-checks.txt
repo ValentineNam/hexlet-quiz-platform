@@ -1,0 +1,170 @@
+2026-11-24 Europe/Moscow. Fresh pre-commit checks, main/aaaa635. ENABLE_QUIZ_API=false; database environment removed; no DB integration rerun claimed.
+
+$ pnpm exec prettier --write docs/practice/PM04/evidence/008a-final-audit.md docs/practice/PM04/evidence/008a-final-audit-postgres.json docs/practice/PM04/evidence/008a-final-audit-memory.json docs/practice/PM04/progress.md
+docs/practice/PM04/evidence/008a-final-audit.md 38ms
+docs/practice/PM04/evidence/008a-final-audit-postgres.json 25ms
+docs/practice/PM04/evidence/008a-final-audit-memory.json 1ms (unchanged)
+docs/practice/PM04/progress.md 13ms (unchanged)
+
+exit=0
+
+$ node --version
+v24.22.2
+
+exit=0
+
+$ pnpm --version
+10.34.9
+
+exit=0
+
+$ pnpm install --frozen-lockfile
+Scope: all 4 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 570ms using pnpm v10.34.9
+
+exit=0
+
+$ pnpm lint
+
+> hexlet-quiz-platform@0.0.0 lint <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> eslint .
+
+
+exit=0
+
+$ pnpm typecheck
+
+> hexlet-quiz-platform@0.0.0 typecheck <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r typecheck
+
+Scope: 3 of 4 workspace projects
+packages/shared typecheck$ tsc --noEmit -p tsconfig.test.json
+packages/shared typecheck: Done
+apps/web typecheck$ tsc --noEmit
+apps/api typecheck$ pnpm prepare:api && tsc --noEmit
+apps/api typecheck: > @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api typecheck: > pnpm --filter @quiz/shared build && prisma generate
+apps/api typecheck: > @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+apps/api typecheck: > tsc
+apps/web typecheck: Done
+apps/api typecheck: Prisma schema loaded from prisma/schema.prisma
+apps/api typecheck: ✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 77ms
+apps/api typecheck: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/api typecheck: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/api typecheck: Done
+
+exit=0
+
+$ pnpm test
+
+> hexlet-quiz-platform@0.0.0 test <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r --if-present test
+
+Scope: 3 of 4 workspace projects
+packages/shared test$ vitest run
+packages/shared test:  RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+packages/shared test:  ✓ src/question-validation.test.ts (98 tests) 9ms
+packages/shared test:  ✓ src/answer-scoring.test.ts (179 tests) 255ms
+packages/shared test:  Test Files  2 passed (2)
+packages/shared test:       Tests  277 passed (277)
+packages/shared test:    Start at  18:07:06
+packages/shared test:    Duration  654ms (transform 281ms, setup 0ms, collect 317ms, tests 264ms, environment 0ms, prepare 105ms)
+packages/shared test: Done
+apps/api test$ pnpm prepare:api && tsc -p tsconfig.build.json && vitest run --exclude 'test/database.integration.test.ts'
+apps/web test$ vitest run
+apps/api test: > @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api test: > pnpm --filter @quiz/shared build && prisma generate
+apps/api test: > @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+apps/api test: > tsc
+apps/web test:  RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/web
+apps/web test:  ✓ src/quiz-api.test.ts (42 tests) 13ms
+apps/web test:  ✓ src/quiz-draft.test.ts (6 tests) 3ms
+apps/api test: Prisma schema loaded from prisma/schema.prisma
+apps/api test: ┌─────────────────────────────────────────────────────────┐
+apps/api test: │  Update available 6.19.0 -> 8.0.0-rc.35                 │
+apps/api test: │                                                         │
+apps/api test: │  This is a major update - please follow the guide at    │
+apps/api test: │  https://pris.ly/d/major-version-upgrade                │
+apps/api test: │                                                         │
+apps/api test: │  Run the following to update                            │
+apps/api test: │    npm i --save-dev prisma@latest                       │
+apps/api test: │    npm i @prisma/client@latest                          │
+apps/api test: └─────────────────────────────────────────────────────────┘
+apps/api test: ✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 81ms
+apps/api test: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/api test: Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+apps/web test:  ✓ src/App.test.tsx (30 tests) 587ms
+apps/web test:  ✓ src/QuizWorkspace.test.tsx (19 tests) 870ms
+apps/web test:  Test Files  4 passed (4)
+apps/web test:       Tests  97 passed (97)
+apps/web test:    Start at  18:07:08
+apps/web test:    Duration  1.84s (transform 213ms, setup 382ms, collect 501ms, tests 1.47s, environment 1.48s, prepare 227ms)
+apps/web test: Done
+apps/api test:  RUN  v3.2.4 <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api test:  ✓ test/database-config.test.ts (4 tests) 2ms
+apps/api test:  ✓ test/readiness-lifecycle.test.ts (7 tests) 10ms
+apps/api test:  ✓ test/prepare-quiz.test.ts (21 tests) 5ms
+apps/api test:  ✓ test/startup.test.ts (13 tests) 354ms
+apps/api test:  ✓ test/health.test.ts (1 test) 77ms
+apps/api test:  ✓ test/quizzes-http.test.ts (7 tests) 108ms
+apps/api test:  ✓ test/shutdown-watchdog.test.ts (6 tests) 289ms
+apps/api test:  ✓ test/readiness.test.ts (4 tests) 1614ms
+apps/api test:    ✓ hung operation is bounded, shared, and safely settles after HTTP timeout  1518ms
+apps/api test:  ✓ test/shutdown-process.test.ts (1 test) 5361ms
+apps/api test:    ✓ compiled main forces bounded stop when a lifecycle hook never settles  5359ms
+apps/api test:  Test Files  9 passed (9)
+apps/api test:       Tests  64 passed (64)
+apps/api test:    Start at  18:07:10
+apps/api test:    Duration  5.64s (transform 303ms, setup 0ms, collect 1.88s, tests 7.82s, environment 1ms, prepare 550ms)
+apps/api test: Done
+
+exit=0
+
+$ pnpm build
+
+> hexlet-quiz-platform@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> pnpm -r build
+
+Scope: 3 of 4 workspace projects
+packages/shared build$ tsc
+packages/shared build: Done
+apps/web build$ tsc --noEmit && vite build
+apps/api build$ pnpm prepare:api && tsc -p tsconfig.build.json
+apps/api build: > @quiz/api@0.0.0 prepare:api <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/apps/api
+apps/api build: > pnpm --filter @quiz/shared build && prisma generate
+apps/api build: > @quiz/shared@0.0.0 build <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform/packages/shared
+apps/api build: > tsc
+apps/api build: Prisma schema loaded from prisma/schema.prisma
+apps/api build: ✔ Generated Prisma Client (v6.19.0) to ./../../node_modules/.pnpm/@prisma+client@6.19.0_prisma@6.19.0_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 40ms
+apps/api build: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+apps/api build: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+apps/web build: vite v7.2.2 building client environment for production...
+apps/web build: transforming...
+apps/web build: ✓ 37 modules transformed.
+apps/api build: Done
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                   0.40 kB │ gzip:  0.27 kB
+apps/web build: dist/assets/index-D16bYaXG.css   12.21 kB │ gzip:  3.62 kB
+apps/web build: dist/assets/index-Bf37ExKy.js   219.71 kB │ gzip: 69.25 kB
+apps/web build: ✓ built in 538ms
+apps/web build: Done
+
+exit=0
+
+$ pnpm format:check
+
+> hexlet-quiz-platform@0.0.0 format:check <HOME>/Documents/Projects/0_Hexlet/hexlet-quiz-platform
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+exit=0
+
+$ git diff --check
+
+exit=0

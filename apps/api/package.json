@@ -6,7 +6,7 @@
     "dev": "pnpm prepare:api && tsc -p tsconfig.build.json && concurrently --kill-others \"tsc -p tsconfig.build.json --watch --preserveWatchOutput\" \"node --env-file-if-exists=../../.env --watch dist/main.js\"",
     "build": "pnpm prepare:api && tsc -p tsconfig.build.json",
     "typecheck": "pnpm prepare:api && tsc --noEmit",
-    "test": "pnpm prepare:api && vitest run --exclude 'test/database.integration.test.ts'",
+    "test": "pnpm prepare:api && tsc -p tsconfig.build.json && vitest run --exclude 'test/database.integration.test.ts'",
     "db:generate": "prisma generate",
     "db:validate": "node --env-file-if-exists=../../.env node_modules/prisma/build/index.js validate",
     "db:migrate": "node --env-file-if-exists=../../.env node_modules/prisma/build/index.js migrate deploy",
